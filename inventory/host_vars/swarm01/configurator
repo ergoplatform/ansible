@@ -1,0 +1,12 @@
+---
+
+configurator:
+
+  directories:
+
+    - dir: /data
+
+  fulldirs:
+    stacks:
+      src: files/docker-stack
+      dest: /data
