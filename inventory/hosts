@@ -1,0 +1,5 @@
+[servers]
+swarm01
+
+[common:children]
+servers

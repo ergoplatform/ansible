@@ -1,0 +1,4 @@
+---
+
+# Ansible settings
+ansible_host: 188.166.109.25

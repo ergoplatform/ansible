@@ -1,0 +1,24 @@
+[submodule "roles/andyceo.preconf"]
+	path = roles/andyceo.preconf
+	url = git@github.com:andyceo/ansible-role-preconf.git
+[submodule "roles/andyceo.docker"]
+	path = roles/andyceo.docker
+	url = git@github.com:andyceo/ansible-role-docker.git
+[submodule "roles/andyceo.users"]
+	path = roles/andyceo.users
+	url = git@github.com:andyceo/ansible-role-users.git
+[submodule "roles/andyceo.ntp"]
+	path = roles/andyceo.ntp
+	url = git@github.com:andyceo/ansible-role-ntp.git
+[submodule "roles/andyceo.configurator"]
+	path = roles/andyceo.configurator
+	url = git@github.com:andyceo/ansible-role-configurator.git
+[submodule "roles/andyceo.telegraf"]
+	path = roles/andyceo.telegraf
+	url = git@github.com:andyceo/ansible-role-telegraf.git
+[submodule "roles/andyceo.mailutils"]
+	path = roles/andyceo.mailutils
+	url = git@github.com:andyceo/ansible-role-mailutils.git
+[submodule "roles/andyceo.git"]
+	path = roles/andyceo.git
+	url = git@github.com:andyceo/ansible-role-git.git
