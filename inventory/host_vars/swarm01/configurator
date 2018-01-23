@@ -7,6 +7,9 @@ configurator:
     - dir: /data
 
   fulldirs:
-    stacks:
+    configs:
+      src: files/configs
+      dest: /data
+    docker-stack:
       src: files/docker-stack
       dest: /data
