@@ -10,8 +10,7 @@ services:
     networks:
       - nginx
     volumes:
-      - /data/configs/nginx/conf.d:/etc/nginx/conf.d:ro
-      - /data/configs/nginx/includes:/etc/nginx/includes:ro
+      - /data/configs/nginx:/etc/nginx:ro
       - nginx-logs:/var/log/nginx
       - /data/configs/nginx/ssl:/ssl
     deploy:
