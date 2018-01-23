@@ -4,6 +4,9 @@ configurator:
 
   directories:
     - dir: /data
+    - dir: /data/ssl
+    - dir: /data/ssl/default
+    - dir: /data/ssl/certbot
 
   fulldirs:
     configs:
