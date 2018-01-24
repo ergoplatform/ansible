@@ -24,3 +24,10 @@ Install git submodules:
 Execute playbook `servers.yml`:
 
     ansible-playbook servers.yml
+
+
+## Services
+
+- [Jenkins](https://jenkins.ergoplatform.com/) - CI system
+- [Grafana](https://grafana.ergoplatform.com/) - monitoring dashboard
+- [Portainer](https://portainer.ergoplatform.com/) - Docker Swarm visualization & management
