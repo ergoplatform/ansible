@@ -4,9 +4,6 @@ services:
 
   influxdb:
     image: influxdb:1.4-alpine
-    configs:
-      - source: influxdb-20170813T132703Z
-        target: /etc/influxdb/influxdb.conf
     volumes:
       - /data/configs/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro
       - influxdb:/var/lib/influxdb
