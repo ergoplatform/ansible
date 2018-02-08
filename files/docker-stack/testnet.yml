@@ -1,0 +1,34 @@
+version: '3.5'
+
+services:
+
+  swarm01:
+    image: ergoplatform/ergo
+    command: /root/ergo-testnet.conf
+    configs:
+      - source: ergo-testnet-20180208T170000
+        target: /root/ergo-testnet.conf
+    volumes:
+      - ergo-testnet:/root/ergo/data
+    networks:
+      - ergo
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == swarm01
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+
+configs:
+  ergo-testnet-20180208T170000:
+    file: /data/configs/ergo-testnet/swarm01.conf
+
+networks:
+  ergo:
+
+volumes:
+  ergo-testnet:
