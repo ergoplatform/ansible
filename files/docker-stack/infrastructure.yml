@@ -73,6 +73,7 @@ services:
     image: grafana/grafana:4.6.3
     networks:
       - nginx
+      - databases_influxdb
     environment:
       GF_SERVER_ROOT_URL: "https://grafana.ergoplatform.com"
     volumes:
@@ -99,6 +100,8 @@ services:
 networks:
   nginx:
   jenkins:
+  databases_influxdb:
+    external: true
 
 volumes:
   portainer:
