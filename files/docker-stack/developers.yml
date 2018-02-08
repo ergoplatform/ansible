@@ -1,0 +1,38 @@
+version: '3.5'
+
+services:
+
+  d01:
+    image: andyceo/phpdevenv:latest
+    volumes:
+      - developer-01:/root
+    networks:
+      - testnet_ergo
+      - nginx
+      - influxdb
+    ports:
+      - "40023:22"
+      - "48889:8888"
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == swarm01
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        # any to allow 'kill 1' works in container.
+        # 'kill 1' will recreate container.
+        condition: any
+
+networks:
+  testnet_ergo:
+    external: true
+  nginx:
+    external: true
+    name: infrastructure_nginx
+  influxdb:
+    external: true
+    name: databases_influxdb
+
+volumes:
+  developer-01:
