@@ -6,7 +6,7 @@ services:
     image: ergoplatform/ergo
     command: /root/ergo-testnet.conf
     configs:
-      - source: ergo-testnet-20180208T170000
+      - source: ergo-testnet-20180212T194000
         target: /root/ergo-testnet.conf
     volumes:
       - ergo-testnet:/root/ergo/data
@@ -39,7 +39,7 @@ services:
           - node.hostname == swarm01
 
 configs:
-  ergo-testnet-20180208T170000:
+  ergo-testnet-20180212T194000:
     file: /data/configs/ergo-testnet/swarm01.conf
   node-info-monitor-20180212T181000:
     file: /data/configs/node-info-monitor/swarm01.ini
