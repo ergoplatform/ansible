@@ -1,5 +1,7 @@
 [servers]
 swarm01
+swarm02
+swarm03
 
 [common:children]
 servers

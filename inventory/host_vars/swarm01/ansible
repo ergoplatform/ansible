@@ -1,4 +1,4 @@
 ---
 
 # Ansible settings
-ansible_host: 188.166.109.25
+ansible_host: "{{ vault_swarm01_ipv4 }}"
