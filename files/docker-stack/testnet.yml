@@ -23,12 +23,36 @@ services:
         reservations:
           cpus: '0.1'
 
+  monitoring01:
+    image: ergoplatform/node-info-monitor
+    configs:
+      - source: node-info-monitor-20180212T181000
+        target: /app/config.ini
+    secrets:
+      - testnet-at-influxdb
+    networks:
+      - ergo
+      - influxdb
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == swarm01
+
 configs:
   ergo-testnet-20180208T170000:
     file: /data/configs/ergo-testnet/swarm01.conf
+  node-info-monitor-20180212T181000:
+    file: /data/configs/node-info-monitor/swarm01.ini
 
 networks:
   ergo:
+  influxdb:
+    external: true
+    name: databases_influxdb
+
+secrets:
+  testnet-at-influxdb:
+    external: true
 
 volumes:
   ergo-testnet:
