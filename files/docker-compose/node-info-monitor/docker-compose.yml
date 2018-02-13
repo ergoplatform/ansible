@@ -1,0 +1,9 @@
+version: '3.5'
+
+services:
+
+  node-info-monitor:
+    image: ergoplatform/node-info-monitor
+    volumes:
+      - /data/node-info-monitor/influxdbpass.txt:/run/secrets/testnet-at-influxdb:ro
+      - /data/node-info-monitor/config.ini:/app/config.ini:ro

@@ -1,0 +1,14 @@
+---
+
+configurator:
+
+  directories:
+    - dir: /data
+    - dir: /data/node-info-monitor
+
+  files:
+    - file: /data/node-info-monitor/docker-compose.yml
+      src: files/docker-compose/node-info-monitor/docker-compose.yml
+
+    - file: /data/node-info-monitor/config.ini
+      src: files/configs/node-info-monitor/swarm03.ini
