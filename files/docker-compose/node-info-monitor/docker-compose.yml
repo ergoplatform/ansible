@@ -7,3 +7,18 @@ services:
     volumes:
       - /data/node-info-monitor/influxdbpass.txt:/run/secrets/testnet-at-influxdb:ro
       - /data/node-info-monitor/config.ini:/app/config.ini:ro
+    restart: always
+
+  ergo:
+    image: ergoplatform/ergo
+    command: /root/ergo-testnet.conf
+    ports:
+      - "9001:9001"
+      - "9051:9051"
+    volumes:
+      - /home/ergo/node/application.conf:/root/ergo-testnet.conf:ro
+      - ergo-testnet:/root/ergo/data
+    restart: "no"
+
+volumes:
+  ergo-testnet:
