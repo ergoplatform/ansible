@@ -3,10 +3,8 @@
 configurator:
 
   directories:
+    - dir: /backup
     - dir: /data
-    - dir: /data/ssl
-    - dir: /data/ssl/default
-    - dir: /data/ssl/certbot
 
   fulldirs:
     configs:
@@ -15,3 +13,10 @@ configurator:
     docker-stack:
       src: files/docker-stack
       dest: /data
+
+  files:
+    # rsnapshot
+    - file: /etc/rsnapshot.conf
+      src: files/configs/rsnapshot/rsnapshot.conf
+    - file: /etc/cron.d/rsnapshot
+      src: files/configs/rsnapshot/rsnapshot.cron.d
