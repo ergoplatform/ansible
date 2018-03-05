@@ -6,7 +6,7 @@ services:
     image: ergoplatform/ergo
     command: /root/ergo-testnet.conf
     configs:
-      - source: ergo-testnet-20180216T154000
+      - source: ergo-testnet-20180305T142000
         target: /root/ergo-testnet.conf
     volumes:
       - ergo-testnet:/root/ergo/data
@@ -18,7 +18,7 @@ services:
           - node.hostname == swarm01
       resources:
         limits:
-          cpus: '0.25'
+          cpus: '0.5'
           memory: 2G
         reservations:
           cpus: '0.1'
@@ -39,7 +39,7 @@ services:
           - node.hostname == swarm01
 
 configs:
-  ergo-testnet-20180216T154000:
+  ergo-testnet-20180305T142000:
     file: /data/configs/ergo-testnet/swarm01.conf
   node-info-monitor-20180212T181000:
     file: /data/configs/node-info-monitor/swarm01.ini
