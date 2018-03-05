@@ -1,0 +1,5 @@
+---
+
+docker:
+  config:
+    pin_docker_engine_to_version: 17.12.1~ce-0~ubuntu
