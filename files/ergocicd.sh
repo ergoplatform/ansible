@@ -1,16 +1,18 @@
 #!/usr/bin/env sh
 
 MAXWAIT=30
-RUNPATH=/home/ergo/node/ergo.jar
 NODE_JAR=/home/ergo/node/ergo.jar
 NODE_CONFIG=/home/ergo/node/application.conf
 NODE_LOG=/home/ergo/node/l.log
-PID=$(pgrep -f ${RUNPATH})
+NODE_PARAMS=
+NODE_DATA_DIR=/home/ergo/node/data
+PID=$(pgrep -f ${NODE_JAR})
 FOUND=$?
+WIPEDATA=${WIPEDATA:-false}
+
+set -xe
 
 sbt reload clean assembly
-
-set -e
 
 if echo ${PID} | grep -q ' '; then
 
@@ -37,9 +39,18 @@ elif [ "${FOUND}" -eq 0 ] && [ -n "${PID}" ]; then
 
 fi
 
+if ${WIPEDATA}; then
+    echo "Wiping node data..."
+    rm -rf ${NODE_DATA_DIR}
+    echo "Done."
+fi
+
 echo "Starting Ergo node..."
 
 cp -pf $(find /home/ergo/jenkins -name ergo-assembly*.jar) ${NODE_JAR}
 
-#java -Xmx3G --add-modules java.xml.bind -jar ${NODE_JAR} ${NODE_CONFIG} > ${NODE_LOG} 2>&1 &
-java -jar ${NODE_JAR} ${NODE_CONFIG} > ${NODE_LOG} 2>&1 &
+if [ "$(hostname)" = 'swarm02' ]; then
+    NODE_PARAMS=-Xmx3G
+fi
+
+BUILD_ID=dontKillMe nohup java ${NODE_PARAMS} -jar ${NODE_JAR} ${NODE_CONFIG} > ${NODE_LOG} &
