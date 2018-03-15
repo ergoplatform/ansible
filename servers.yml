@@ -37,10 +37,6 @@
       tags:
         - git
 
-    - role: andyceo.configurator
-      tags:
-        - configurator
-
     - role: andyceo.docker
       tags:
         - docker
@@ -49,9 +45,13 @@
       tags:
         - telegraf
 
+    - role: andyceo.configurator
+      tags:
+        - configurator
+
 
   tasks:
-    - name: Entering to tasks section
+    - name: DEBUG - Entering to tasks section
       debug: msg="Host {{ ansible_hostname }} has inventory hostname {{ inventory_hostname }}, has uuid {{ ansible_product_uuid }}"
       tags:
         - init
