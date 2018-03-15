@@ -1,0 +1,28 @@
+---
+
+configurator:
+
+  default:
+    directory:
+      mode: 755
+      owner: root
+      group: root
+      state: directory
+    file:
+      mode: 644
+      owner: root
+      group: root
+
+  fulldirs: {}
+
+  directories:
+
+    # Base data directory
+    - dir: /data
+
+  files:
+
+    # Copy telegraf configuration file
+    - file: /etc/telegraf/telegraf.conf
+      src: files/configs/telegraf/telegraf.conf
+      notify: telegraf-restart
