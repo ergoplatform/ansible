@@ -68,9 +68,15 @@ services:
       placement:
         constraints:
           - node.hostname == swarm01
+      resources:
+        limits:
+          cpus: '3'
+          memory: 6G
+        reservations:
+          cpus: '0.1'
 
   grafana:
-    image: grafana/grafana:5.0.0
+    image: grafana/grafana:5.0.3
     networks:
       - nginx
       - databases_influxdb
