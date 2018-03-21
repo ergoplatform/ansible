@@ -11,7 +11,7 @@ configurator:
       src: files/configs
       dest: /data
     docker-stack:
-      src: files/docker-stack
+      src: files/stacks
       dest: /data
 
   files:
