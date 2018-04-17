@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 
 # -*- coding: utf-8 -*-
+from colors import color
 import requests
 import sys
 import yaml
 from openapi_core import create_spec
 from openapi_core.validators import RequestValidator, ResponseValidator
 from openapi_core.wrappers import BaseOpenAPIRequest, BaseOpenAPIResponse
-from urllib.parse import urlparse
+from werkzeug.datastructures import ImmutableMultiDict
+from urllib.parse import urlparse, parse_qsl
 
 
 class RequestsOpenAPIRequest(BaseOpenAPIRequest):
@@ -34,8 +36,8 @@ class RequestsOpenAPIRequest(BaseOpenAPIRequest):
     @property
     def parameters(self):
         return {
-            'path': [],
-            'query': [],
+            'path': self.url.path,
+            'query': ImmutableMultiDict(parse_qsl(self.url.query)),
             'headers': self.request.headers,
             'cookies': self.request.cookies,
         }
@@ -93,6 +95,11 @@ def validate(openapi_file):
                 response_errors = result.errors
 
                 print('Request errors: {} Response errors: {}'.format(request_errors, response_errors))
+                if request_errors or response_errors:
+                    print(color(' [FAIL] {:d} errors found '.format(len(request_errors) + len(response_errors)),
+                                fg='white', bg='red', style='bold'))
+                else:
+                    print(color(' [PASS] No errors found ', fg='white', bg='green', style='bold'))
             else:
                 print(path)
 
