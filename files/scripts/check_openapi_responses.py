@@ -13,9 +13,11 @@ from urllib.parse import urlparse, parse_qsl
 
 
 class RequestsOpenAPIRequest(BaseOpenAPIRequest):
-    def __init__(self, request):
+    def __init__(self, request, path_pattern=None, path_params={}):
         self.request = request
         self.url = urlparse(request.url)
+        self._path_pattern = path_pattern
+        self._path_params = path_params
 
     @property
     def host_url(self):
@@ -31,12 +33,15 @@ class RequestsOpenAPIRequest(BaseOpenAPIRequest):
 
     @property
     def path_pattern(self):
-        return self.url.path
+        if self._path_pattern is None:
+            return self.url.path
+
+        return self._path_pattern
 
     @property
     def parameters(self):
         return {
-            'path': self.url.path,
+            'path': self._path_params,
             'query': ImmutableMultiDict(parse_qsl(self.url.query)),
             'headers': self.request.headers,
             'cookies': self.request.cookies,
@@ -76,34 +81,57 @@ def validate(openapi_file):
         server_url = 'http://88.198.13.202:9051'
         total_errors_count = 0
 
+        parameters = {
+            'count': 2,
+            'length': 123,
+            'blockHeight': 20,
+            'headerId': 'Ebo1riBazi8JpvmtqFnkbyhK29P8KXPawiTVyVFgAqhY',
+            'transactionId': 'GfVvVHC4RxoYQHWaCBSnJavcpTjkV9MLxePoF3JYsbjJ'
+        }
+
         for path, path_object in spec.paths.items():
+            print()
+
             if '{' not in path:
-                print()
                 print(path)
-                req = requests.Request('GET', server_url + path)
-                openapi_request = RequestsOpenAPIRequest(req)
-                validator = RequestValidator(spec)
-                result = validator.validate(openapi_request)
-                request_errors = result.errors
-
-                r = req.prepare()
-                s = requests.Session()
-                res = s.send(r)
-
-                openapi_response = RequestsOpenAPIResponse(res)
-                validator = ResponseValidator(spec)
-                result = validator.validate(openapi_request, openapi_response)
-                response_errors = result.errors
-
-                print('Request errors: {} Response errors: {}'.format(request_errors, response_errors))
-                if request_errors or response_errors:
-                    errors_count = len(request_errors) + len(response_errors)
-                    total_errors_count += errors_count
-                    print(color(' [FAIL] {:d} errors found '.format(errors_count), fg='white', bg='red', style='bold'))
-                else:
-                    print(color(' [PASS] No errors found ', fg='white', bg='green', style='bold'))
+                new_path = path
+                path_pattern = None
+                path_params = {}
             else:
-                print(path)
+                parameter_start = path.find('{')
+                parameter_end = path.find('}')
+                parameter = path[parameter_start + 1:parameter_end]
+                new_path = path[:parameter_start] + str(parameters[parameter]) + path[parameter_end + 1:]
+                print(path, '->', new_path)
+                path_pattern = path
+                path_params = {parameter: parameters[parameter]}
+
+            if 'get' not in path_object.operations:
+                print('Skipping, no GET method for this path')
+                continue
+
+            req = requests.Request('GET', server_url + new_path)
+            openapi_request = RequestsOpenAPIRequest(req, path_pattern, path_params)
+            validator = RequestValidator(spec)
+            result = validator.validate(openapi_request)
+            request_errors = result.errors
+
+            r = req.prepare()
+            s = requests.Session()
+            res = s.send(r)
+
+            openapi_response = RequestsOpenAPIResponse(res)
+            validator = ResponseValidator(spec)
+            result = validator.validate(openapi_request, openapi_response)
+            response_errors = result.errors
+
+            print('Request errors: {} Response errors: {}'.format(request_errors, response_errors))
+            if request_errors or response_errors:
+                errors_count = len(request_errors) + len(response_errors)
+                total_errors_count += errors_count
+                print(color(' [FAIL] {:d} errors found '.format(errors_count), fg='white', bg='red', style='bold'))
+            else:
+                print(color(' [PASS] No errors found ', fg='white', bg='green', style='bold'))
 
         if total_errors_count:
             print()
