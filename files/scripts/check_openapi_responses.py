@@ -74,6 +74,7 @@ def validate(openapi_file):
         spec_dict = yaml.safe_load(myfile)
         spec = create_spec(spec_dict)
         server_url = 'http://88.198.13.202:9051'
+        total_errors_count = 0
 
         for path, path_object in spec.paths.items():
             if '{' not in path:
@@ -96,12 +97,18 @@ def validate(openapi_file):
 
                 print('Request errors: {} Response errors: {}'.format(request_errors, response_errors))
                 if request_errors or response_errors:
-                    print(color(' [FAIL] {:d} errors found '.format(len(request_errors) + len(response_errors)),
-                                fg='white', bg='red', style='bold'))
+                    errors_count = len(request_errors) + len(response_errors)
+                    total_errors_count += errors_count
+                    print(color(' [FAIL] {:d} errors found '.format(errors_count), fg='white', bg='red', style='bold'))
                 else:
                     print(color(' [PASS] No errors found ', fg='white', bg='green', style='bold'))
             else:
                 print(path)
+
+        if total_errors_count:
+            print()
+            print(color(' [FAIL] Total {:d} errors found '.format(total_errors_count), fg='white', bg='red',
+                        style='bold'))
 
 
 if __name__ == "__main__":
