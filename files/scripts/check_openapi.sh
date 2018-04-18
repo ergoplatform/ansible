@@ -1,13 +1,13 @@
 #!/usr/bin/env sh
 
 pip3 install ansicolors openapi-spec-validator
-wget -N https://raw.githubusercontent.com/ergoplatform/ansible/master/files/scripts/validator.py
+wget -N https://raw.githubusercontent.com/ergoplatform/ansible/master/files/scripts/check_openapi_spec.py
 npm i speccy
 
 # Python OpenAPI validator
 echo
 echo "Validating with Python openapi-spec-validator..."
-python3 validator.py src/main/resources/api/openapi.yaml
+python3 check_openapi_spec.py src/main/resources/api/openapi.yaml
 
 # NodeJS OpenAPI validator
 echo
