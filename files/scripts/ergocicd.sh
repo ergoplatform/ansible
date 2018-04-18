@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-MAXWAIT=30
+MAXWAIT=60
 NODE_JAR=/home/ergo/node/ergo.jar
 NODE_CONFIG=/home/ergo/node/application.conf
 NODE_LOG=/home/ergo/node/l.log
