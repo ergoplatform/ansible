@@ -79,7 +79,7 @@ def validate(openapi_file):
     with open(openapi_file, 'r') as myfile:
         spec_dict = yaml.safe_load(myfile)
         spec = create_spec(spec_dict)
-        server_url = 'http://88.198.13.202:9051'
+        server_url = 'http://139.59.254.126:9051'
         total_errors_count = 0
 
         parameters = {
