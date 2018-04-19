@@ -131,6 +131,7 @@ def validate(openapi_file):
                 errors_count = len(request_errors) + len(response_errors)
                 total_errors_count += errors_count
                 print(color(' [FAIL] {:d} errors found '.format(errors_count), fg='white', bg='red', style='bold'))
+                print("Response body: {}".format(res.text))
             else:
                 print(color(' [PASS] No errors found ', fg='white', bg='green', style='bold'))
 
@@ -138,6 +139,7 @@ def validate(openapi_file):
             print()
             print(color(' [FAIL] Total {:d} errors found '.format(total_errors_count), fg='white', bg='red',
                         style='bold'))
+            exit(total_errors_count)
 
 
 if __name__ == "__main__":
