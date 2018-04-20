@@ -4,7 +4,7 @@ set -e
 
 SPEC_IS_WRONG=false
 
-pip3 install ansicolors openapi-core openapi-spec-validator
+pip3 install ansicolors openapi-core openapi-spec-validator --upgrade
 wget -N https://raw.githubusercontent.com/ergoplatform/ansible/master/files/scripts/check_openapi_spec.py
 wget -N https://raw.githubusercontent.com/ergoplatform/ansible/master/files/scripts/check_openapi_responses.py
 npm i speccy
