@@ -63,8 +63,7 @@ class RequestsOpenAPIResponse(BaseOpenAPIResponse):
 
     @property
     def data(self):
-        # @todo maybe: check mimetype and then parse data respecting mimetype
-        return self.response.json()
+        return self.response.text
 
     @property
     def status_code(self):
