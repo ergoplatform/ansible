@@ -2,6 +2,7 @@
 
 # -*- coding: utf-8 -*-
 from colors import color
+import json
 import requests
 import sys
 import yaml
@@ -49,11 +50,11 @@ class RequestsOpenAPIRequest(BaseOpenAPIRequest):
 
     @property
     def body(self):
-        return ''
+        return self.request.data
 
     @property
     def mimetype(self):
-        return ''
+        return self.request.headers.get('content-type')
 
 
 class RequestsOpenAPIResponse(BaseOpenAPIResponse):
@@ -82,57 +83,74 @@ def validate(openapi_file):
         total_errors_count = 0
 
         parameters = {
-            'count': 2,
-            'length': 123,
-            'blockHeight': 20,
-            'headerId': 'Ebo1riBazi8JpvmtqFnkbyhK29P8KXPawiTVyVFgAqhY',
-            'transactionId': 'GfVvVHC4RxoYQHWaCBSnJavcpTjkV9MLxePoF3JYsbjJ'
+            'get': {
+                'count': 2,
+                'length': 123,
+                'blockHeight': 20,
+                'headerId': 'Ebo1riBazi8JpvmtqFnkbyhK29P8KXPawiTVyVFgAqhY',
+            },
+            'post': {
+                # '/blocks': None,
+                # '/transactions': None,
+                '/peers/connect': '127.0.0.1:5673',
+                # '/utils/hash/blake2b': '123qwe'
+            }
         }
 
         for path, path_object in spec.paths.items():
-            print()
+            for method, operation in path_object.operations.items():
+                print()
 
-            if '{' not in path:
-                print(path)
-                new_path = path
-                path_pattern = None
-                path_params = {}
-            else:
-                parameter_start = path.find('{')
-                parameter_end = path.find('}')
-                parameter = path[parameter_start + 1:parameter_end]
-                new_path = path[:parameter_start] + str(parameters[parameter]) + path[parameter_end + 1:]
-                print(path, '->', new_path)
-                path_pattern = path
-                path_params = {parameter: parameters[parameter]}
+                if '{' not in path:
+                    print('{} {}'.format(method.upper(), path))
+                    new_path = path
+                    path_pattern = None
+                    path_params = {}
+                else:
+                    parameter_start = path.find('{')
+                    parameter_end = path.find('}')
+                    parameter = path[parameter_start + 1:parameter_end]
+                    new_path = path[:parameter_start] + str(parameters['get'][parameter]) + path[parameter_end + 1:]
+                    print('{} {} -> {}'.format(method.upper(), path, new_path))
+                    path_pattern = path
+                    path_params = {parameter: parameters['get'][parameter]}
 
-            if 'get' not in path_object.operations:
-                print('Skipping, no GET method for this path')
-                continue
+                if method == 'get':
+                    req = requests.Request('GET', server_url + new_path)
+                elif method == 'post':
+                    if new_path in parameters['post'] and parameters['post'][new_path]:
+                        req = requests.Request('POST', server_url + new_path,
+                                               data=json.dumps(parameters['post'][new_path]),
+                                               headers={'content-type': 'application/json'})
+                    else:
+                        print('Skipping, POST method has no example payload to test')
+                        continue
+                else:
+                    print('Skipping, no GET or POST methods for this path')
+                    continue
 
-            req = requests.Request('GET', server_url + new_path)
-            openapi_request = RequestsOpenAPIRequest(req, path_pattern, path_params)
-            validator = RequestValidator(spec)
-            result = validator.validate(openapi_request)
-            request_errors = result.errors
+                openapi_request = RequestsOpenAPIRequest(req, path_pattern, path_params)
+                validator = RequestValidator(spec)
+                result = validator.validate(openapi_request)
+                request_errors = result.errors
 
-            r = req.prepare()
-            s = requests.Session()
-            res = s.send(r)
+                r = req.prepare()
+                s = requests.Session()
+                res = s.send(r)
 
-            openapi_response = RequestsOpenAPIResponse(res)
-            validator = ResponseValidator(spec)
-            result = validator.validate(openapi_request, openapi_response)
-            response_errors = result.errors
+                openapi_response = RequestsOpenAPIResponse(res)
+                validator = ResponseValidator(spec)
+                result = validator.validate(openapi_request, openapi_response)
+                response_errors = result.errors
 
-            print('Request errors: {} Response errors: {}'.format(request_errors, response_errors))
-            if request_errors or response_errors:
-                errors_count = len(request_errors) + len(response_errors)
-                total_errors_count += errors_count
-                print(color(' [FAIL] {:d} errors found '.format(errors_count), fg='white', bg='red', style='bold'))
-                print("Response body: {}".format(res.text))
-            else:
-                print(color(' [PASS] No errors found ', fg='white', bg='green', style='bold'))
+                print('Request errors: {} Response errors: {}'.format(request_errors, response_errors))
+                if request_errors or response_errors:
+                    errors_count = len(request_errors) + len(response_errors)
+                    total_errors_count += errors_count
+                    print(color(' [FAIL] {:d} errors found '.format(errors_count), fg='white', bg='red', style='bold'))
+                    print("Response body: {}".format(res.text))
+                else:
+                    print(color(' [PASS] No errors found ', fg='white', bg='green', style='bold'))
 
         if total_errors_count:
             print()
