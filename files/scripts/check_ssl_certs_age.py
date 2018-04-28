@@ -29,5 +29,5 @@ if __name__ == "__main__":
     for entry in os.scandir(CERTBOT_ETC_PATH + '/live'):
         if not entry.name.startswith('.') and entry.is_dir():
             age_file_check = t - entry.stat().st_mtime < file_threshold
-            age_cert_check = get_cert_expiration(entry.name) - t > 25
+            age_cert_check = get_cert_expiration(entry.name) - t > THRESHOLD
             print('{}, file age check {}, cert age check {}'.format(entry.name, age_file_check, age_cert_check))
