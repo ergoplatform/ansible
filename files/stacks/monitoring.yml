@@ -2,6 +2,23 @@ version: '3.5'
 
 services:
 
+  certificates:
+    image: andyceo/monitoring-certificate
+    environment:
+      INFLUXDB_HOST: 'influxdb'
+      INFLUXDB_PORT: 8086
+      INFLUXDB_USER: testnet
+      INFLUXDB_PASSWORD:
+      INFLUXDB_DATABASE: monitoring
+    secrets:
+      - testnet-at-influxdb
+    networks:
+      - databases_influxdb
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == swarm01
+
   node-info-monitor-78-46-93-239:
     image: ergoplatform/node-info-monitor
     environment:
