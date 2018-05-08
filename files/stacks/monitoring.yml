@@ -1,0 +1,23 @@
+version: '3.5'
+
+services:
+
+  node-info-monitor-78-46-93-239:
+    image: ergoplatform/node-info-monitor
+    environment:
+      MONITORING_NODE_URL: "http://78.46.93.239:9051"
+    secrets:
+      - testnet-at-influxdb
+    networks:
+      - databases_influxdb
+    deploy:
+      # temporarily disabled
+      replicas: 0
+
+networks:
+  databases_influxdb:
+    external: true
+
+secrets:
+  testnet-at-influxdb:
+    external: true
