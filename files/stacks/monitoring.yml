@@ -4,16 +4,19 @@ services:
 
   certificates:
     image: andyceo/monitoring-certificate
+    command: --daemon
     environment:
       INFLUXDB_HOST: 'influxdb'
       INFLUXDB_PORT: 8086
-      INFLUXDB_USER: testnet
-      INFLUXDB_PASSWORD:
-      INFLUXDB_DATABASE: monitoring
+      INFLUXDB_USER: telegraf
+      INFLUXDB_PASSWORD_FILE: /run/secrets/telegraf-at-influxdb
+      INFLUXDB_DATABASE: telegraf
     secrets:
-      - testnet-at-influxdb
+      - telegraf-at-influxdb
     networks:
       - databases_influxdb
+    volumes:
+      - certbot-etc:/etc/letsencrypt:ro
     deploy:
       placement:
         constraints:
@@ -36,5 +39,12 @@ networks:
     external: true
 
 secrets:
+  telegraf-at-influxdb:
+    external: true
   testnet-at-influxdb:
     external: true
+
+volumes:
+  certbot-etc:
+    external: true
+    name: infrastructure_certbot-etc
