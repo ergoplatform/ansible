@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3.6'
 
 services:
 
@@ -76,7 +76,7 @@ services:
           cpus: '0.1'
 
   grafana:
-    image: grafana/grafana:5.1.1
+    image: grafana/grafana:5.1.2
     networks:
       - nginx
       - databases_influxdb
