@@ -22,6 +22,18 @@ services:
         constraints:
           - node.hostname == swarm01
 
+  kapacitor:
+    image: kapacitor:1.4-alpine
+    volumes:
+      - kapacitor-lib:/var/lib/kapacitor:rw
+    networks:
+      - databases_influxdb
+    deploy:
+      replicas: 0
+      placement:
+        constraints:
+          - node.hostname == swarm01
+
   node-info-monitor-78-46-93-239:
     image: ergoplatform/node-info-monitor
     environment:
@@ -48,3 +60,4 @@ volumes:
   certbot-etc:
     external: true
     name: infrastructure_certbot-etc
+  kapacitor-lib:
