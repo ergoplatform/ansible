@@ -23,13 +23,15 @@ services:
           - node.hostname == swarm01
 
   kapacitor:
-    image: kapacitor:1.4-alpine
+    image: kapacitor:1.5-alpine
     volumes:
       - kapacitor-lib:/var/lib/kapacitor:rw
+      - kapacitor-log:/var/log/kapacitor:rw
+      - /data/configs/kapacitor:/etc/kapacitor:ro
     networks:
       - databases_influxdb
     deploy:
-      replicas: 0
+      replicas: 1
       placement:
         constraints:
           - node.hostname == swarm01
