@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3.6'
 
 services:
 
@@ -63,3 +63,4 @@ volumes:
     external: true
     name: infrastructure_certbot-etc
   kapacitor-lib:
+  kapacitor-log:
