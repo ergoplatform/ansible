@@ -2,6 +2,7 @@
 swarm01
 swarm02
 swarm03
+it-tests
 
 [common:children]
 servers
