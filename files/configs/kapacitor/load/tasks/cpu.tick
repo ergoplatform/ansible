@@ -1,0 +1,20 @@
+dbrp "telegraf"."autogen"
+
+stream
+    |from()
+        .measurement('cpu')
+        .where(lambda: "cpu" == 'cpu-total')
+    |groupBy('host')
+    |eval(lambda: 100.0 - "usage_idle")
+        .as('usage_total')
+    |window()
+        .period(1m)
+        .every(10s)
+    |alert()
+        .message('{{ .ID }} is {{ .Level}}: CPU total usage is {{ index .Fields "usage_total" | printf "%0.2f" }}%')
+        .warn(lambda: sigma("usage_total") > 3)
+        .crit(lambda: "usage_total" > 95)
+        .critReset(lambda: "usage_total" < 90)
+        .stateChangesOnly()
+        .log('/var/log/kapacitor/cpu_alerts.log')
+        .slack()

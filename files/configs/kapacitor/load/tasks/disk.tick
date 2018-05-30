@@ -1,0 +1,18 @@
+dbrp "telegraf"."autogen"
+
+stream
+    |from()
+        .measurement('disk')
+        .where(lambda: "path" == '/' OR "path" == '/backup' OR "path" == '/data')
+    |groupBy('host', 'path')
+    |alert()
+        .message('{{ .ID }} is {{ .Level}} used: {{ index .Fields "used_percent" }} %')
+        .warn(lambda: sigma("used_percent") > 3)
+        // 5 368 709 120 bytes = 5Gb
+        .crit(lambda: "free" < 5368709120)
+        // 10 737 418 240 bytes = 10 Gb
+        .critReset(lambda: "free" > 10737418240)
+        .idField('used_percent')
+        .stateChangesOnly()
+        .log('/var/log/kapacitor/disk_alerts.log')
+        .slack()
