@@ -1,4 +1,5 @@
 ---
 
 # Ansible settings
+ansible_host: "{{ vault_ipv4 }}"
 ansible_ssh_port: 22
