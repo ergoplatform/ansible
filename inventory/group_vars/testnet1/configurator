@@ -1,0 +1,27 @@
+---
+
+configurator:
+
+  directories:
+
+    # Base data directory
+    - dir: /data
+
+    # Ergo directory
+    - dir: /data/ergo
+
+  files:
+
+    # Copy telegraf configuration file
+    - file: /etc/telegraf/telegraf.conf
+      src: files/configs/telegraf/telegraf.conf
+      notify: telegraf-restart
+
+    # Copy Ergo jar-file
+    - file: /data/ergo/ergo.jar
+      src: /home/andyceo/workspace/ergoplatform-ergo/target/scala-2.12/ergo-assembly-1.0.0-SNAPSHOT.jar
+
+    # Copy Ergo config file
+    - file: /data/ergo/application.conf
+      src: /home/andyceo/workspace/ergoplatform-ergo/src/main/resources/application.conf
+      force: no

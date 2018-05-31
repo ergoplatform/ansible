@@ -1,0 +1,39 @@
+---
+
+preconf:
+  utilities:
+    - acl
+    - apt-file
+    - bc
+    - ccze
+    - curl
+    - default-jre-headless
+    - facter
+    - fail2ban
+    - grc
+    - htop
+    - iftop
+    - ioping
+    - iotop
+    - itop
+    - lm-sensors
+    - lsscsi
+    - mc
+    - mcelog
+    - ncdu
+    - ncurses-term
+    - nethogs
+    - nmap
+    - powertop
+    - pwgen
+    - python-software-properties
+    - rsnapshot
+    - rsync
+    - smartmontools
+    - sudo
+    - sysstat
+    - tcpdump
+    - tmux
+    - traceroute
+    - tree
+    - wget
