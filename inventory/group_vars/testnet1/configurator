@@ -10,6 +10,10 @@ configurator:
     # Ergo directory
     - dir: /data/ergo
 
+    # remove old blockchain data
+    - dir: /data/ergo/ergo
+      state: absent
+
   files:
 
     # Copy telegraf configuration file
@@ -19,7 +23,7 @@ configurator:
 
     # Copy Ergo jar-file
     - file: /data/ergo/ergo.jar
-      src: /home/andyceo/workspace/ergoplatform-ergo/target/scala-2.12/ergo-assembly-1.0.0-SNAPSHOT.jar
+      src: /home/andyceo/workspace/ergoplatform-ergo/target/scala-2.12/ergo-assembly-1.0.0.jar
 
     # Copy Ergo config file
     - file: /data/ergo/application.conf
