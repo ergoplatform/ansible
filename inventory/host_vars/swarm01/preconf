@@ -2,7 +2,7 @@
 
 preconf:
   hostname:
-    apply: yes
+    apply: no
     hostname: swarm01
     fqdn: swarm01.ergoplatform.com
     ipv4: 127.0.1.1
