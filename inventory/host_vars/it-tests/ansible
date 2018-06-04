@@ -1,0 +1,3 @@
+---
+
+ansible_host: "{{ vault_ipv4 }}"
