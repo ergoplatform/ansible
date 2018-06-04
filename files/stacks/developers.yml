@@ -24,6 +24,27 @@ services:
         # 'kill 1' will recreate container.
         condition: any
 
+  d02:
+    image: andyceo/phpdevenv:latest
+    volumes:
+      - developer-02:/root
+    networks:
+      - testnet_ergo
+      - nginx
+      - influxdb
+      - postgres
+    ports:
+      - "40024:22"
+      - "48890:8888"
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == swarm01
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+
 networks:
   testnet_ergo:
     external: true
@@ -33,6 +54,10 @@ networks:
   influxdb:
     external: true
     name: databases_influxdb
+  postgres:
+    external: true
+    name: databases_postgres
 
 volumes:
   developer-01:
+  developer-02:
