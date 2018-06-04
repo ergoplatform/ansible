@@ -16,8 +16,21 @@ services:
         constraints:
           - node.hostname == swarm01
 
+  postgres:
+    image: postgres:10-alpine
+    volumes:
+      - postgres:/var/lib/postgresql/data:rw
+    networks:
+      - postgres
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == swarm01
+
 networks:
   influxdb:
+  postgres:
 
 volumes:
   influxdb:
+  postgres:
