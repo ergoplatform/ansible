@@ -31,3 +31,15 @@ Execute playbook `servers.yml`:
 - [Jenkins](https://jenkins.ergoplatform.com/) - CI system
 - [Grafana](https://grafana.ergoplatform.com/) - monitoring dashboard
 - [Portainer](https://portainer.ergoplatform.com/) - Docker Swarm visualization & management
+
+
+## Get Let's Encrypt certificate with Certbot docker image
+
+docker run -it --rm --name certbot \
+      -v infrastructure_certbot-etc:/etc/letsencrypt:rw \
+      -v infrastructure_certbot-lib:/var/lib/letsencrypt:rw \
+      -v infrastructure_certbot-log:/var/log/letsencrypt:rw \
+      -v infrastructure_certbot-webroot:/letsencrypt-webroot:rw \
+      certbot/certbot certonly --no-self-upgrade --agree-tos --text
+      --non-interactive --keep-until-expiring --expand --webroot --email YOUR@EMAIL.COM \
+      -w /letsencrypt-webroot -d EXAMPLE.COM
