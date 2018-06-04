@@ -76,10 +76,10 @@ services:
           cpus: '0.1'
 
   grafana:
-    image: grafana/grafana:5.1.2
+    image: grafana/grafana:5.1.3
     networks:
       - nginx
-      - databases_influxdb
+      - influxdb
     environment:
       GF_SERVER_ROOT_URL: "https://grafana.ergoplatform.com"
     volumes:
@@ -103,11 +103,21 @@ services:
         constraints:
           - node.hostname == swarm01
 
+  adminer:
+    image: adminer:4-standalone
+    networks:
+      - postgres
+      - nginx
+
 networks:
   nginx:
   jenkins:
-  databases_influxdb:
+  influxdb:
     external: true
+    name: databases_influxdb
+  postgres:
+    external: true
+    name: databases_postgres
 
 volumes:
   portainer:
