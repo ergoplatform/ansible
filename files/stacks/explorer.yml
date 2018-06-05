@@ -1,0 +1,28 @@
+version: '3.6'
+
+services:
+  back:
+    image: ergoplatform/explorer-back
+    ports:
+      - "8080:8080"
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/explorer
+      DB_USER: ergo
+      DB_PASS_FILE: /run/secrets/ergo-at-postgres
+    networks:
+      - postgres
+      - nginx
+    secrets:
+      - ergo-at-postgres
+
+networks:
+  postgres:
+    external: true
+    name: databases_postgres
+  nginx:
+    external: true
+    name: infrastructure_nginx
+
+secrets:
+  ergo-at-postgres:
+    external: true
