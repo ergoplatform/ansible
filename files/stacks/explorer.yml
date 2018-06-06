@@ -1,6 +1,7 @@
 version: '3.6'
 
 services:
+
   back:
     image: ergoplatform/explorer-back
     ports:
@@ -14,6 +15,13 @@ services:
       - nginx
     secrets:
       - ergo-at-postgres
+
+  front:
+    image: ergoplatform/ergo-explorer
+    environment:
+      REACT_APP_API_URL: http://back:8080
+    networks:
+      - nginx
 
 networks:
   postgres:
