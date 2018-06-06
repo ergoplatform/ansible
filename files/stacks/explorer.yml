@@ -4,8 +4,6 @@ services:
 
   back:
     image: ergoplatform/explorer-back
-    ports:
-      - "8080:8080"
     environment:
       DB_URL: jdbc:postgresql://postgres:5432/explorer
       DB_USER: ergo
@@ -19,7 +17,7 @@ services:
   front:
     image: ergoplatform/ergo-explorer
     environment:
-      REACT_APP_API_URL: http://back:8080
+      REACT_APP_API_URL: https://api.testnet.ergoplatform.com/
     networks:
       - nginx
 
