@@ -16,8 +16,8 @@ services:
 
   front:
     image: ergoplatform/ergo-explorer
-    environment:
-      REACT_APP_API_URL: https://api.testnet.ergoplatform.com/
+    volumes:
+      - /data/configs/ergo-explorer/app.config.js:/usr/src/app/build/client/app.config.js:ro
     networks:
       - nginx
 
