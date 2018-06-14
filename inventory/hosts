@@ -10,6 +10,7 @@ testnet1-light-ubuntu-s-1vcpu-2gb-lon1-01 ansible_host=209.97.136.204
 [devnodes]
 developer-01 ansible_host=188.166.109.25 ansible_ssh_port=40023
 developer-02 ansible_host=188.166.109.25 ansible_ssh_port=40024
+karella ansible_connection=local
 
 [servers:children]
 testnet1
