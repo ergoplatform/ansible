@@ -109,6 +109,18 @@ services:
       - postgres
       - nginx
 
+  dockerhub-webhooks:
+    image: andyceo/dockerhub-webhooks
+    networks:
+      - nginx
+    volumes:
+      - /data/stacks:/data/stacks
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == swarm01
+
 networks:
   nginx:
   jenkins:
