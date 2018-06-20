@@ -114,6 +114,7 @@ services:
     networks:
       - nginx
     volumes:
+      - /data/configs/dockerhub-webhooks/config.json:/app/config.json
       - /data/stacks:/data/stacks
       - /var/run/docker.sock:/var/run/docker.sock
     deploy:
