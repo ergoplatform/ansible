@@ -39,14 +39,20 @@ services:
   node-info-monitor-78-46-93-239:
     image: ergoplatform/node-info-monitor
     environment:
-      MONITORING_NODE_URL: "http://78.46.93.239:9051"
+      MONITORING_NODE_URL: "http://78.46.93.239:9052"
     secrets:
       - testnet-at-influxdb
     networks:
       - databases_influxdb
-    deploy:
-      # temporarily disabled
-      replicas: 0
+
+  node-info-monitor-88-198-13-202:
+    image: ergoplatform/node-info-monitor
+    environment:
+      MONITORING_NODE_URL: "http://88.198.13.202:9052"
+    secrets:
+      - testnet-at-influxdb
+    networks:
+      - databases_influxdb
 
 networks:
   databases_influxdb:
