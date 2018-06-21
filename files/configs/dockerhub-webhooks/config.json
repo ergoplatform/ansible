@@ -1,0 +1,15 @@
+{
+  "stacks": {
+    "ergoplatform/ergo-explorer:latest": {
+      "stack": "explorer",
+      "filepath": "/data/stacks/explorer.yml"
+    },
+    "ergoplatform/explorer-back:latest": {
+      "stack": "explorer",
+      "filepath": "/data/stacks/explorer.yml"
+    }
+  },
+
+  "services": {
+  }
+}
