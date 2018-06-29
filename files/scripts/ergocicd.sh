@@ -10,7 +10,8 @@ PID=$(pgrep -f ${NODE_JAR})
 FOUND=$?
 WIPEDATA=${WIPEDATA:-false}
 
-set -xe
+# This script does not work with `set -xe`
+#set -xe
 
 sbt reload clean assembly
 
