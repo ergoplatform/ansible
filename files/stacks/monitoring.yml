@@ -54,6 +54,15 @@ services:
     networks:
       - databases_influxdb
 
+  node-info-monitor-ergo-dsalab-de:
+    image: ergoplatform/node-info-monitor
+    environment:
+      MONITORING_NODE_URL: "http://ergo.dsalab.de:9051"
+    secrets:
+      - testnet-at-influxdb
+    networks:
+      - databases_influxdb
+
 networks:
   databases_influxdb:
     external: true
