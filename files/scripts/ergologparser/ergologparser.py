@@ -19,5 +19,3 @@ with open(config_file, 'r') as c:
                         block_id = match.group(1)
                         print(node_name, '|', block_id)
                         break
-                else:
-                    print(len(logstring))
