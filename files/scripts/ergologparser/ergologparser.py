@@ -4,7 +4,7 @@ import re
 
 if __name__ == "__main__":
     path = '/data/ergo'
-    log_file = path + '/l.log'
+    log_file = path + '/ergo.log'
     config_file = path + '/application.conf'
 
     with open(config_file, 'r') as c:
