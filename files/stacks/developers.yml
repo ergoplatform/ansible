@@ -10,6 +10,7 @@ services:
       - testnet_ergo
       - nginx
       - influxdb
+      - explorer
     ports:
       - "40023:22"
       - "48889:8888"
@@ -32,7 +33,7 @@ services:
       - testnet_ergo
       - nginx
       - influxdb
-      - postgres
+      - explorer
     ports:
       - "40024:22"
       - "48890:8888"
@@ -54,9 +55,9 @@ networks:
   influxdb:
     external: true
     name: databases_influxdb
-  postgres:
+  explorer:
     external: true
-    name: databases_postgres
+    name: explorer_default
 
 volumes:
   developer-01:

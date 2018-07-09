@@ -2,6 +2,15 @@ version: '3.6'
 
 services:
 
+  postgres:
+    image: postgres:10-alpine
+    volumes:
+      - postgres:/var/lib/postgresql/data:rw
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == explorer
+
   back:
     image: ergoplatform/explorer-back
     environment:
@@ -9,10 +18,14 @@ services:
       DB_USER: ergo
       DB_PASS_FILE: /run/secrets/ergo-at-postgres
     networks:
-      - postgres
+      - default
       - nginx
     secrets:
       - ergo-at-postgres
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == explorer
 
   front:
     image: ergoplatform/ergo-explorer
@@ -20,14 +33,18 @@ services:
       - /data/configs/ergo-explorer/app.config.js:/usr/src/app/build/client/app.config.js:ro
     networks:
       - nginx
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == explorer
 
 networks:
-  postgres:
-    external: true
-    name: databases_postgres
   nginx:
     external: true
     name: infrastructure_nginx
+
+volumes:
+  postgres:
 
 secrets:
   ergo-at-postgres:
