@@ -1,6 +1,7 @@
 [servers]
 swarm01 ansible_host=188.166.109.25
 it-tests
+explorer ansible_host=167.99.44.242
 
 [testnet1]
 testnet1-ubuntu-s-2vcpu-4gb-lon1-01 ansible_host=209.97.138.187

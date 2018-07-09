@@ -1,0 +1,21 @@
+---
+
+configurator:
+
+  directories:
+    - dir: /data
+
+  fulldirs:
+    configs:
+      src: files/configs
+      dest: /data
+    stacks:
+      src: files/stacks
+      dest: /data
+
+  files:
+
+    # Copy telegraf configuration file
+    - file: /etc/telegraf/telegraf.conf
+      src: files/configs/telegraf/telegraf.conf
+      notify: telegraf-restart
