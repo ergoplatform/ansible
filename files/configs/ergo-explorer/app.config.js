@@ -1,5 +1,5 @@
 var __APP_CONFIG__ = {
-  apiUrl: 'https://api.testnet.ergoplatform.com',
+  apiUrl: 'https://api-testnet.ergoplatform.com',
   environments: [
 //     {
 //       name: 'Mainnet',
