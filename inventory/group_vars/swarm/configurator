@@ -2,9 +2,6 @@
 
 configurator:
 
-  directories:
-    - dir: /data
-
   fulldirs:
     configs:
       src: files/configs
@@ -12,6 +9,11 @@ configurator:
     stacks:
       src: files/stacks
       dest: /data
+
+  directories:
+
+    # Base data directory
+    - dir: /data
 
   files:
 

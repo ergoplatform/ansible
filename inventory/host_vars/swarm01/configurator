@@ -2,10 +2,6 @@
 
 configurator:
 
-  directories:
-    - dir: /backup
-    - dir: /data
-
   fulldirs:
     configs:
       src: files/configs
@@ -13,6 +9,10 @@ configurator:
     stacks:
       src: files/stacks
       dest: /data
+
+  directories:
+    - dir: /backup
+    - dir: /data
 
   files:
     # rsnapshot
