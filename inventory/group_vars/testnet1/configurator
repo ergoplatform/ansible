@@ -12,7 +12,7 @@ configurator:
 
     # remove old blockchain data
     - dir: /data/ergo/data
-      state: absent
+    #  state: absent
 
   files:
 
@@ -28,4 +28,3 @@ configurator:
     # Copy Ergo config file
     - file: /data/ergo/application.conf
       src: files/configs/ergo-testnet/{{ inventory_hostname }}.conf
-      force: no
