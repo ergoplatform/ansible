@@ -1,19 +1,19 @@
 #!/usr/bin/env sh
 
 MAXWAIT=60
-NODE_JAR=/home/ergo/node/ergo.jar
-NODE_CONFIG=/home/ergo/node/application.conf
-NODE_LOG=/home/ergo/node/l.log
+NODE_BASE_DIR=/data/ergo
+NODE_JAR=${NODE_BASE_DIR}/ergo.jar
+NODE_CONFIG=${NODE_BASE_DIR}/application.conf
+NODE_LOG=${NODE_BASE_DIR}/ergo_norotate.log
 NODE_PARAMS=
-NODE_DATA_DIR=/home/ergo/node/data
+NODE_DATA_DIR=${NODE_BASE_DIR}/data
+JARFILE_TO_SEEK=ergo-deploy-to-testnet.jar
 PID=$(pgrep -f ${NODE_JAR})
 FOUND=$?
 WIPEDATA=${WIPEDATA:-false}
 
 # This script does not work with `set -xe`
-#set -xe
-
-sbt reload clean assembly
+set -x
 
 if echo ${PID} | grep -q ' '; then
 
@@ -48,9 +48,9 @@ fi
 
 echo "Starting Ergo node..."
 
-cp -pf $(find /home/ergo/jenkins -name ergo-assembly*.jar) ${NODE_JAR}
+cp -pf $(find . -type f -name ${JARFILE_TO_SEEK}) ${NODE_JAR}
 
-if [ "$(hostname)" = 'swarm02' ]; then
+if [ "$(hostname)" = 'testnet1-ubuntu-s-2vcpu-4gb-lon1-02' ]; then
     NODE_PARAMS=-Xmx3G
 fi
 
