@@ -28,3 +28,8 @@ configurator:
     # Copy Ergo config file
     - file: /data/ergo/application.conf
       src: files/configs/ergo-testnet/{{ inventory_hostname }}.conf
+
+  templates:
+    testnet_env_vars:
+      src: files/configs/profile.d/testnet_env_vars.sh.j2
+      dest: /etc/profile.d/testnet_env_vars.sh

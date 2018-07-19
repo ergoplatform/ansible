@@ -12,6 +12,9 @@ PID=$(pgrep -f ${NODE_JAR})
 FOUND=$?
 WIPEDATA=${WIPEDATA:-false}
 
+# Variable INFLUXDB_CONNECTION_STRING should exists for curling to InfluxDB monitoring database
+# Variables BUILD_ID, BUILD_TAG, BUILD_URL and others are provided by Jenkins
+
 # This script does not work with `set -xe`
 set -x
 
@@ -55,3 +58,18 @@ if [ "$(hostname)" = 'testnet1-ubuntu-s-2vcpu-4gb-lon1-02' ]; then
 fi
 
 BUILD_ID=dontKillMe nohup java ${NODE_PARAMS} -jar ${NODE_JAR} ${NODE_CONFIG} > ${NODE_LOG} &
+
+# Supress passwords output used below
+set +xe
+
+# Read the INFLUXDB_CONNECTION_STRING variable if it exists
+if [ -f /etc/profile.d/testnet_env_vars.sh ]; then
+    . /etc/profile.d/testnet_env_vars.sh
+
+    # If this variable read, then report about event to InfluxDB
+    if [ -n ${INFLUXDB_CONNECTION_STRING} ]; then
+        INFLUXDB_EVENT_TITLE="Deployed on $(hostname)"
+        INFLUXDB_EVENT_DESCRIPTION="<a href='${BUILD_URL}'>Build info</a>"
+        curl -s -X POST ""${INFLUXDB_CONNECTION_STRING}"" --data-binary 'events title="'"${INFLUXDB_EVENT_TITLE}"'",description="'"${INFLUXDB_EVENT_DESCRIPTION}"'"'
+    fi
+fi

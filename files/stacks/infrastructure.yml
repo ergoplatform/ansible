@@ -47,6 +47,7 @@ services:
     networks:
       - nginx
       - jenkins
+      - influxdb
     volumes:
       - jenkins:/var/jenkins_home
     environment:
