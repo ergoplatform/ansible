@@ -25,3 +25,7 @@ configurator:
     - file: /etc/telegraf/telegraf.conf
       src: files/configs/telegraf/telegraf.conf
       notify: telegraf-restart
+
+    - file: /etc/postfix/main.cf
+      src: files/configs/postfix/main.cf
+      notify: restart postfix
