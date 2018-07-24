@@ -8,7 +8,7 @@ import sys
 import yaml
 from openapi_core import create_spec
 from openapi_core.validators import RequestValidator, ResponseValidator
-from openapi_core.wrappers import BaseOpenAPIRequest, BaseOpenAPIResponse
+from openapi_core.wrappers.base import BaseOpenAPIRequest, BaseOpenAPIResponse
 from werkzeug.datastructures import ImmutableMultiDict
 from urllib.parse import urlparse, parse_qsl
 
@@ -79,7 +79,7 @@ def validate(openapi_file):
     with open(openapi_file, 'r') as myfile:
         spec_dict = yaml.safe_load(myfile)
         spec = create_spec(spec_dict)
-        server_url = 'http://139.59.254.126:9051'
+        server_url = 'http://209.97.138.187:9052'
         total_errors_count = 0
 
         parameters = {
