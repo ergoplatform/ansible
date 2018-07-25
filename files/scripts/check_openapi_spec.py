@@ -1,6 +1,5 @@
 import sys
-from os import path, getcwd
-
+import os
 from colors import color
 from jsonschema.exceptions import RefResolutionError
 from openapi_spec_validator import openapi_v3_spec_validator
@@ -15,7 +14,7 @@ def validate(url):
         handler = UrlHandler('http', 'https', 'file')
 
         if not urlparse(url).scheme:
-            url = 'file://' + path.join(getcwd(), url)
+            url = 'file://' + os.path.join(os.getcwd(), url)
 
         spec = handler(url)
 
@@ -49,7 +48,7 @@ def print_error(count, path, message, instance):
 
 
 def help():
-    print('usage: ' + path.basename(__file__) + ' <spec_url_or_path>')
+    print('usage: ' + os.path.basename(__file__) + ' <spec_url_or_path>')
 
 
 def main(argv):
