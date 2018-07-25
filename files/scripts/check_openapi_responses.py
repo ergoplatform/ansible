@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 # -*- coding: utf-8 -*-
 from colors import color
 import json
@@ -14,11 +13,11 @@ from urllib.parse import urlparse, parse_qsl
 
 
 class RequestsOpenAPIRequest(BaseOpenAPIRequest):
-    def __init__(self, request, path_pattern=None, path_params={}):
+    def __init__(self, request, path_pattern=None, path_params=None):
         self.request = request
         self.url = urlparse(request.url)
         self._path_pattern = path_pattern
-        self._path_params = path_params
+        self._path_params = path_params if path_params is not None else {}
 
     @property
     def host_url(self):
