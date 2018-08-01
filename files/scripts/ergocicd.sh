@@ -7,10 +7,11 @@ NODE_CONFIG=${NODE_BASE_DIR}/application.conf
 NODE_LOG=${NODE_BASE_DIR}/ergo_norotate.log
 NODE_PARAMS=
 NODE_DATA_DIR=${NODE_BASE_DIR}/data
-JARFILE_TO_SEEK=ergo-deploy-to-testnet.jar
 PID=$(pgrep -f "ergo*.jar")
 FOUND=$?
 WIPEDATA=${WIPEDATA:-false}
+VERSION=${VERSION:-master}
+JARFILE_TO_SEEK="ergo-deploy-to-testnet-${VERSION}.jar"
 
 # Variable INFLUXDB_CONNECTION_STRING should exists for curling to InfluxDB monitoring database
 # Variables BUILD_ID, BUILD_TAG, BUILD_URL and others are provided by Jenkins
@@ -66,9 +67,9 @@ set +xe
 if [ -f /etc/profile.d/testnet_env_vars.sh ]; then
     . /etc/profile.d/testnet_env_vars.sh
 
-    # If this variable read, then report about event to InfluxDB
+    # If this variable was read, then report about event to InfluxDB
     if [ -n ${INFLUXDB_CONNECTION_STRING} ]; then
-        INFLUXDB_EVENT_TITLE="Deployed on $(hostname)"
+        INFLUXDB_EVENT_TITLE="Deployed ${VERSION} on $(hostname)"
         INFLUXDB_EVENT_DESCRIPTION="<a href='${BUILD_URL}'>Build info</a>"
         curl -s -X POST ""${INFLUXDB_CONNECTION_STRING}"" --data-binary 'events title="'"${INFLUXDB_EVENT_TITLE}"'",description="'"${INFLUXDB_EVENT_DESCRIPTION}"'"'
     fi
