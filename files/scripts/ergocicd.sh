@@ -8,7 +8,7 @@ NODE_LOG=${NODE_BASE_DIR}/ergo_norotate.log
 NODE_PARAMS=
 NODE_DATA_DIR=${NODE_BASE_DIR}/data
 JARFILE_TO_SEEK=ergo-deploy-to-testnet.jar
-PID=$(pgrep -f ${NODE_JAR})
+PID=$(pgrep -f "ergo*.jar")
 FOUND=$?
 WIPEDATA=${WIPEDATA:-false}
 
