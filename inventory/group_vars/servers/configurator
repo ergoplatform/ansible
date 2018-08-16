@@ -20,9 +20,8 @@ configurator:
     # Base data directory
     - dir: /data
 
-  files:
-
-    # Copy telegraf configuration file
-    - file: /etc/telegraf/telegraf.conf
-      src: files/configs/telegraf/telegraf.conf
+  templates:
+    telegraf:
+      src: files/configs/telegraf/servers.conf.j2
+      dest: /etc/telegraf/telegraf.conf
       notify: telegraf-restart

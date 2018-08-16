@@ -16,15 +16,6 @@ configurator:
 
   files:
 
-    # Copy telegraf configuration file
-    - file: /etc/telegraf/telegraf.conf
-      src: files/configs/telegraf/telegraf.conf
-      notify: telegraf-restart
-
-    # Copy Ergo jar-file
-    - file: /data/ergo/ergo.jar
-      src: /home/andyceo/workspace/ergoplatform-ergo/target/scala-2.12/ergo-assembly-1.5.0.jar
-
     # Copy Ergo config file
     - file: /data/ergo/application.conf
       src: files/configs/ergo-testnet/{{ inventory_hostname }}.conf

@@ -1,0 +1,66 @@
+[global_tags]
+  dc = "digitalocean"
+  group = "servers"
+[agent]
+  interval = "10s"
+  round_interval = true
+  metric_batch_size = 1000
+  metric_buffer_limit = 10000
+  collection_jitter = "0s"
+  flush_interval = "10s"
+  flush_jitter = "0s"
+  precision = ""
+  debug = false
+  quiet = true
+  logfile = "/var/log/telegraf/telegraf.log"
+  hostname = ""
+  omit_hostname = false
+
+[[outputs.influxdb]]
+  urls = ["http://188.166.109.25:8086"] # required
+  database = "telegraf" # required
+  retention_policy = ""
+  write_consistency = "any"
+  timeout = "5s"
+  username = "telegraf"
+  password = "{{ vault_influxdb_user_telegraf }}"
+
+[[inputs.cpu]]
+  percpu = true
+  totalcpu = true
+  collect_cpu_time = false
+  report_active = false
+
+[[inputs.disk]]
+  ignore_fs = ["tmpfs", "devtmpfs", "devfs"]
+
+[[inputs.diskio]]
+  skip_serial_number = true
+
+[[inputs.kernel]]
+
+[[inputs.mem]]
+
+[[inputs.processes]]
+
+[[inputs.swap]]
+
+[[inputs.system]]
+
+[[inputs.fail2ban]]
+  use_sudo = true
+
+[[inputs.iptables]]
+  use_sudo = true
+  use_lock = false
+  table = "filter"
+  chains = [ "INPUT" ]
+
+[[inputs.net]]
+  interfaces = ["eth[0-4]"]
+  ignore_protocol_stats = false
+
+[[inputs.netstat]]
+
+[[inputs.ntpq]]
+  dns_lookup = true

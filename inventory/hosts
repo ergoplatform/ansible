@@ -20,7 +20,7 @@ karella ansible_connection=local
 
 [servers:children]
 testnet1
-devnodes
 
 [common:children]
 servers
+devnodes
