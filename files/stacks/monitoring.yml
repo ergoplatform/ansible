@@ -36,6 +36,33 @@ services:
         constraints:
           - node.hostname == swarm01
 
+  node-info-monitor-209-97-138-187-mine1:
+    image: ergoplatform/node-info-monitor
+    environment:
+      MONITORING_NODE_URL: "http://209.97.138.187:9052"
+    secrets:
+      - testnet-at-influxdb
+    networks:
+      - databases_influxdb
+
+  node-info-monitor-209-97-134-210-mine2:
+    image: ergoplatform/node-info-monitor
+    environment:
+      MONITORING_NODE_URL: "http://209.97.134.210:9052"
+    secrets:
+      - testnet-at-influxdb
+    networks:
+      - databases_influxdb
+
+  node-info-monitor-209-97-136-204-light:
+    image: ergoplatform/node-info-monitor
+    environment:
+      MONITORING_NODE_URL: "http://209.97.136.204:9052"
+    secrets:
+      - testnet-at-influxdb
+    networks:
+      - databases_influxdb
+
   node-info-monitor-78-46-93-239:
     image: ergoplatform/node-info-monitor
     environment:
@@ -58,6 +85,15 @@ services:
     image: ergoplatform/node-info-monitor
     environment:
       MONITORING_NODE_URL: "http://ergo.dsalab.de:9051"
+    secrets:
+      - testnet-at-influxdb
+    networks:
+      - databases_influxdb
+
+  node-aleksey:
+    image: ergoplatform/node-info-monitor
+    environment:
+      MONITORING_NODE_URL: "http://188.166.109.25:48890"
     secrets:
       - testnet-at-influxdb
     networks:
