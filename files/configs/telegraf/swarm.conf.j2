@@ -1,6 +1,6 @@
 [global_tags]
   dc = "digitalocean"
-  group = "swarm"
+  group = "docker-swarm"
 [agent]
   interval = "10s"
   round_interval = true
@@ -49,16 +49,16 @@
 
 [[inputs.docker]]
   endpoint = "unix:///var/run/docker.sock"
-  gather_services = false
+  gather_services = {{ 'true' if ansible_hostname == docker.swarm.manager else 'false' }}
   container_names = []
   container_name_include = []
   container_name_exclude = []
   timeout = "5s"
   perdevice = true
-  total = false
-  ##tag_env = ["JAVA_HOME", "HEAP_SIZE"]
+  total = true
   docker_label_include = []
-  docker_label_exclude = []
+  docker_label_exclude = ["annotation.kubernetes*", "maintainer", "org.labelschema.*"]
+  tag_env = []
 
 [[inputs.fail2ban]]
   use_sudo = true
