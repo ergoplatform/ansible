@@ -63,12 +63,6 @@
 [[inputs.fail2ban]]
   use_sudo = true
 
-[[inputs.iptables]]
-  use_sudo = true
-  use_lock = false
-  table = "filter"
-  chains = [ "INPUT" ]
-
 [[inputs.net]]
   interfaces = ["eth[0-4]"]
   ignore_protocol_stats = false
