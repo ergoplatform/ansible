@@ -21,6 +21,14 @@ services:
       - certbot-webroot:/webroot
       - certbot-etc:/etc/letsencrypt
       - /data/configs/nginx/ssl:/ssl
+      - type: tmpfs
+        target: /var/cache/nginx
+        tmpfs:
+          size: 104857600 # 100 Mb
+      - type: tmpfs
+        target: /run
+        tmpfs:
+          size: 1048576 # 1 Mb
     deploy:
       placement:
         constraints:
