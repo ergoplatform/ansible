@@ -14,7 +14,7 @@ services:
     secrets:
       - telegraf-at-influxdb
     networks:
-      - databases_influxdb
+      - influxdb
     volumes:
       - certbot-etc:/etc/letsencrypt:ro
     deploy:
@@ -29,7 +29,7 @@ services:
       - kapacitor-log:/var/log/kapacitor:rw
       - /data/configs/kapacitor:/etc/kapacitor:ro
     networks:
-      - databases_influxdb
+      - influxdb
     deploy:
       replicas: 1
       placement:
@@ -43,7 +43,7 @@ services:
     secrets:
       - testnet-at-influxdb
     networks:
-      - databases_influxdb
+      - influxdb
 
   node-info-monitor-209-97-134-210-mine2:
     image: ergoplatform/node-info-monitor
@@ -52,7 +52,7 @@ services:
     secrets:
       - testnet-at-influxdb
     networks:
-      - databases_influxdb
+      - influxdb
 
   node-info-monitor-209-97-136-204-light:
     image: ergoplatform/node-info-monitor
@@ -61,7 +61,7 @@ services:
     secrets:
       - testnet-at-influxdb
     networks:
-      - databases_influxdb
+      - influxdb
 
   node-info-monitor-78-46-93-239:
     image: ergoplatform/node-info-monitor
@@ -70,7 +70,7 @@ services:
     secrets:
       - testnet-at-influxdb
     networks:
-      - databases_influxdb
+      - influxdb
 
   node-info-monitor-88-198-13-202:
     image: ergoplatform/node-info-monitor
@@ -79,7 +79,7 @@ services:
     secrets:
       - testnet-at-influxdb
     networks:
-      - databases_influxdb
+      - influxdb
 
   node-info-monitor-ergo-dsalab-de:
     image: ergoplatform/node-info-monitor
@@ -88,7 +88,7 @@ services:
     secrets:
       - testnet-at-influxdb
     networks:
-      - databases_influxdb
+      - influxdb
 
   node-aleksey:
     image: ergoplatform/node-info-monitor
@@ -97,11 +97,12 @@ services:
     secrets:
       - testnet-at-influxdb
     networks:
-      - databases_influxdb
+      - influxdb
 
 networks:
-  databases_influxdb:
+  influxdb:
     external: true
+    name: databases_influxdb
 
 secrets:
   telegraf-at-influxdb:
