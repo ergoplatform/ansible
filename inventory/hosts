@@ -5,9 +5,6 @@ explorer ansible_host=167.99.44.242
 [servers]
 it-tests
 
-[servers:children]
-docker-swarm
-
 [testnet1]
 testnet1-ubuntu-s-2vcpu-4gb-lon1-01 ansible_host=209.97.138.187
 testnet1-ubuntu-s-2vcpu-4gb-lon1-02 ansible_host=209.97.134.210
@@ -19,6 +16,7 @@ developer-02 ansible_host=188.166.109.25 ansible_ssh_port=40024
 karella ansible_connection=local
 
 [servers:children]
+docker-swarm
 testnet1
 
 [common:children]

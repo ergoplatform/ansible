@@ -24,6 +24,7 @@
   timeout = "5s"
   username = "telegraf"
   password = "{{ vault_influxdb_user_telegraf }}"
+  influx_uint_support = false
 
 [[inputs.cpu]]
   percpu = true
@@ -35,7 +36,22 @@
   ignore_fs = ["tmpfs", "devtmpfs", "devfs"]
 
 [[inputs.diskio]]
-  skip_serial_number = true
+  skip_serial_number = false
+  device_tags = ["ID_FS_TYPE", "ID_FS_USAGE"]
+  name_templates = ["$ID_FS_LABEL","$DM_VG_NAME/$DM_LV_NAME"]
+
+[[inputs.docker]]
+  endpoint = "unix:///var/run/docker.sock"
+  gather_services = {{ 'true' if 'swarm' in docker and ansible_hostname == docker.swarm.manager else 'false' }}
+  container_names = []
+  container_name_include = []
+  container_name_exclude = []
+  timeout = "5s"
+  perdevice = true
+  total = true
+  docker_label_include = []
+  docker_label_exclude = ["annotation.kubernetes*", "maintainer", "org.labelschema.*"]
+  tag_env = []
 
 [[inputs.kernel]]
 
