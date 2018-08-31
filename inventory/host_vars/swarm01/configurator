@@ -11,8 +11,7 @@ configurator:
       dest: /data
 
   directories:
-    - dir: /backup
-    - dir: /data
+    /backup:
 
   files:
     # rsnapshot

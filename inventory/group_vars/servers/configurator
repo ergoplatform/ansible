@@ -16,9 +16,7 @@ configurator:
   fulldirs: {}
 
   directories:
-
-    # Base data directory
-    - dir: /data
+    /data:
 
   templates:
     telegraf:

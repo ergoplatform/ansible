@@ -5,13 +5,13 @@ configurator:
   directories:
 
     # Base data directory
-    - dir: /data
+    /data:
 
     # Ergo directory
-    - dir: /data/ergo
+    /data/ergo:
 
     # remove old blockchain data
-    - dir: /data/ergo/data
+    /data/ergo/data:
     #  state: absent
 
   files:

@@ -11,9 +11,8 @@ configurator:
       dest: /data
 
   directories:
-
-    # Base data directory
-    - dir: /data
+    /data:
+    /data/configs_rendered:
 
   templates:
     telegraf:
