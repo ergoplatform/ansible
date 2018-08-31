@@ -24,6 +24,7 @@
   timeout = "5s"
   username = "telegraf"
   password = "{{ vault_influxdb_user_telegraf }}"
+  influx_uint_support = false
 
 [[inputs.cpu]]
   percpu = true

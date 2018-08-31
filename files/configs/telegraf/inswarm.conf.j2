@@ -1,0 +1,32 @@
+[global_tags]
+  dc = "swarm"
+
+[agent]
+  interval = "10s"
+  round_interval = true
+  metric_batch_size = 1000
+  metric_buffer_limit = 10000
+  collection_jitter = "0s"
+  flush_interval = "10s"
+  flush_jitter = "0s"
+  precision = ""
+  debug = false
+  quiet = true
+  logfile = ""
+  hostname = ""
+  omit_hostname = true
+
+[[outputs.influxdb]]
+  urls = ["http://influxdb:8086"]
+  database = "telegraf"
+  retention_policy = ""
+  write_consistency = "any"
+  timeout = "5s"
+  username = "telegraf"
+  password = "{{ vault_influxdb_user_telegraf }}"
+  influx_uint_support = false
+
+[[inputs.nginx]]
+  urls = ["http://nginx"]
+  insecure_skip_verify = false
+  response_timeout = "5s"

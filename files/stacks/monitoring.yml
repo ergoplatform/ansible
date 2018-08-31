@@ -22,6 +22,14 @@ services:
         constraints:
           - node.hostname == swarm01
 
+  telegraf:
+    image: telegraf:alpine
+    networks:
+      - influxdb
+      - nginx
+    volumes:
+      - /data/configs_rendered/inswarm.conf:/etc/telegraf/telegraf.conf:ro
+
   kapacitor:
     image: kapacitor:1.5-alpine
     volumes:
@@ -112,6 +120,9 @@ networks:
   influxdb:
     external: true
     name: databases_influxdb
+  nginx:
+    external: true
+    name: infrastructure_nginx
 
 secrets:
   telegraf-at-influxdb:
