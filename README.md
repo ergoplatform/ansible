@@ -39,7 +39,7 @@ docker run -it --rm --name certbot \
       -v infrastructure_certbot-etc:/etc/letsencrypt:rw \
       -v infrastructure_certbot-lib:/var/lib/letsencrypt:rw \
       -v infrastructure_certbot-log:/var/log/letsencrypt:rw \
-      -v infrastructure_certbot-webroot:/letsencrypt-webroot:rw \
+      -v infrastructure_certbot-webroot:/webroot:rw \
       certbot/certbot certonly --no-self-upgrade --agree-tos --text
       --non-interactive --keep-until-expiring --expand --webroot --email YOUR@EMAIL.COM \
-      -w /letsencrypt-webroot -d EXAMPLE.COM
+      -w /webroot -d EXAMPLE.COM
