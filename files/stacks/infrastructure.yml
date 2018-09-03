@@ -139,7 +139,7 @@ networks:
     name: databases_influxdb
   postgres:
     external: true
-    name: databases_postgres
+    name: explorer_postgres
 
 volumes:
   portainer:

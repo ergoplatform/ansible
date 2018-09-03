@@ -57,7 +57,7 @@ networks:
     name: databases_influxdb
   explorer:
     external: true
-    name: explorer_default
+    name: explorer_postgres
 
 volumes:
   developer-01:

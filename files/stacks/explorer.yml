@@ -6,6 +6,8 @@ services:
     image: postgres:10-alpine
     volumes:
       - postgres:/var/lib/postgresql/data:rw
+    networks:
+      - postgres
     deploy:
       placement:
         constraints:
@@ -18,7 +20,7 @@ services:
       DB_USER: ergo
       DB_PASS_FILE: /run/secrets/ergo-at-postgres
     networks:
-      - default
+      - postgres
       - nginx
     secrets:
       - ergo-at-postgres
@@ -42,6 +44,7 @@ networks:
   nginx:
     external: true
     name: infrastructure_nginx
+  postgres:
 
 volumes:
   postgres:
