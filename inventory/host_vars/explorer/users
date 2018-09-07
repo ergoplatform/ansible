@@ -1,0 +1,22 @@
+---
+
+users:
+
+  users:
+    andyceo:
+      sudoers:
+        - "ALL= NOPASSWD:/usr/bin/docker container ps,/usr/bin/docker container ps *,/usr/bin/docker container logs *"
+      password: alwPRE0iIhJpw
+      update_password: on_create
+
+    aleksey:
+      sudoers:
+        - "ALL= NOPASSWD:/usr/bin/docker container ps,/usr/bin/docker container ps *,/usr/bin/docker container logs *"
+      password: alNSq1YaeutFc
+      update_password: on_create
+
+    appbak3r:
+      sudoers:
+        - "ALL= NOPASSWD:/usr/bin/docker container ps,/usr/bin/docker container ps *,/usr/bin/docker container logs *"
+      password: alQs/M89jKGLw
+      update_password: on_create
