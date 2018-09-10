@@ -30,3 +30,6 @@
   urls = ["http://nginx"]
   insecure_skip_verify = false
   response_timeout = "5s"
+
+[[inputs.postgresql]]
+  address = "postgres://postgres:{{ docker.swarm.secrets['postgres-at-postgres'].data }}@postgres/postgres?sslmode=disable"

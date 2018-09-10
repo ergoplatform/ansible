@@ -27,6 +27,7 @@ services:
     networks:
       - influxdb
       - nginx
+      - explorer_postgres
     volumes:
       - /data/configs_rendered/inswarm.conf:/etc/telegraf/telegraf.conf:ro
 
@@ -123,6 +124,8 @@ networks:
   nginx:
     external: true
     name: infrastructure_nginx
+  explorer_postgres:
+    external: true
 
 secrets:
   telegraf-at-influxdb:
