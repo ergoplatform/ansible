@@ -117,6 +117,15 @@ services:
     networks:
       - influxdb
 
+  node-info-monitor-178-128-162-150:
+    image: ergoplatform/node-info-monitor
+    environment:
+      MONITORING_NODE_URL: "http://178.128.162.150:9052"
+    secrets:
+      - testnet-at-influxdb
+    networks:
+      - influxdb
+
 networks:
   influxdb:
     external: true
