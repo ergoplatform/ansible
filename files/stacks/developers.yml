@@ -11,6 +11,7 @@ services:
       - nginx
       - influxdb
       - explorer
+      - elasticsearch
     ports:
       - "40023:22"
       - "48889:8888"
@@ -34,6 +35,7 @@ services:
       - nginx
       - influxdb
       - explorer
+      - elasticsearch
     ports:
       - "40024:22"
       - "48890:8888"
@@ -58,6 +60,9 @@ networks:
   explorer:
     external: true
     name: explorer_postgres
+  elasticsearch:
+    external: true
+    name: databases_elasticsearch
 
 volumes:
   developer-01:
