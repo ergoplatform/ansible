@@ -1,0 +1,54 @@
+version: '3.6'
+
+services:
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.1
+    networks:
+      - elasticsearch
+    environment:
+      discovery.type: single-node
+    volumes:
+      - /data/elasticsearch/conf:/usr/share/elasticsearch/config
+      - /data/elasticsearch/data:/usr/share/elasticsearch/data
+      - /data/elasticsearch/logs:/usr/share/elasticsearch/logs
+      - type: tmpfs
+        target: /tmp
+        tmpfs:
+          size: 104857600 # 100 Mb
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == newhope
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.4.1
+    networks:
+      - nginx
+      - elasticsearch
+    environment:
+      SERVER_NAME: kibana.services.ruware.com
+      ELASTICSEARCH_URL: "http://elasticsearch:9200"
+      NODE_OPTIONS: --max-old-space-size=200
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:6.4.1
+    networks:
+      - elasticsearch
+      - logstash
+
+  filebeat:
+    image: docker.elastic.co/logstash/logstash:6.4.1
+    networks:
+      - logstash
+    deploy:
+      placement:
+        constraints:
+        - node.hostname == newhope
+
+networks:
+  nginx:
+    external: true
+    name: infrastructure_nginx
+  elasticsearch:
+  logstash:
