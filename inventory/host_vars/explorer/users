@@ -12,7 +12,7 @@ users:
     aleksey:
       sudoers:
         - "ALL= NOPASSWD:/usr/bin/docker container ps,/usr/bin/docker container ps *,/usr/bin/docker container logs *"
-      password: alNSq1YaeutFc
+      password: alE2tdRlTnb22
       update_password: on_create
 
     appbak3r:
