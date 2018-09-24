@@ -6,7 +6,7 @@ import requests
 import sys
 import yaml
 from openapi_core import create_spec
-from openapi_core.validators import RequestValidator, ResponseValidator
+from openapi_core.shortcuts import RequestValidator, ResponseValidator
 from openapi_core.wrappers.base import BaseOpenAPIRequest, BaseOpenAPIResponse
 from werkzeug.datastructures import ImmutableMultiDict
 from urllib.parse import urlparse, parse_qsl
