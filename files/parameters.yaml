@@ -1,6 +1,7 @@
 paths:
 
   /blocks:
+    skip: True
     post:
       - |
         {
@@ -739,39 +740,33 @@ paths:
 
   /blocks/lastHeaders/{count}:
     path_parameters:
-      - |
-        {"count": 2}
+      - count: 2
 
   /blocks/at/{blockHeight}:
+    skip: True
     path_parameters:
-      - |
-        {"blockHeight": 20}
+      - blockHeight: 20
 
   /blocks/{headerId}:
+    skip: True
     path_parameters:
-      - |
-        {"headerId": "00d2a8d21113598ea924329f9520905693e914bac6235255b74fd3b8016171aa"}
+      - headerId: 00d2a8d21113598ea924329f9520905693e914bac6235255b74fd3b8016171aa
 
   /blocks/{headerId}/header:
     path_parameters:
-      - |
-        {"headerId": "00d2a8d21113598ea924329f9520905693e914bac6235255b74fd3b8016171aa"}
+      - headerId: 00d2a8d21113598ea924329f9520905693e914bac6235255b74fd3b8016171aa
 
   /blocks/{headerId}/transactions:
+    skip: True
     path_parameters:
-      - |
-        {"headerId": "00d2a8d21113598ea924329f9520905693e914bac6235255b74fd3b8016171aa"}
-
-  /blocks/{headerId}/size:
-    path_parameters:
-      - |
-        {"headerId": "00d2a8d21113598ea924329f9520905693e914bac6235255b74fd3b8016171aa"}
+      - headerId: 00d2a8d21113598ea924329f9520905693e914bac6235255b74fd3b8016171aa
 
   /peers/connect:
     post:
       - '"127.0.0.1:5673"'
 
   /transactions:
+    skip: True
     post:
       - |
         {
@@ -814,5 +809,4 @@ paths:
 
   /utils/seed/{length}:
     path_parameters:
-      - |
-        {"length": 123}
+      - length: 123
