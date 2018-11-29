@@ -1,6 +1,8 @@
 ---
 
 docker:
+  config:
+    pin_docker_engine_to_version: 5:18.09.0~3-0~ubuntu-xenial
   swarm:
     manager: swarm01
     secrets:
