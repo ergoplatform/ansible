@@ -1,6 +1,22 @@
-version: '3.6'
+version: '3.7'
 
 services:
+
+  grafana:
+    image: grafana/grafana:5.3.4
+    networks:
+      - nginx
+      - influxdb
+    # For configuration examples, @see http://docs.grafana.org/installation/docker/
+    environment:
+      GF_SERVER_ROOT_URL: "https://grafana.ergoplatform.com"
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+    volumes:
+      - /data/grafana:/var/lib/grafana
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == swarm01
 
   certificates:
     image: andyceo/monitoring-certificate

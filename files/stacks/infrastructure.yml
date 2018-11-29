@@ -84,22 +84,6 @@ services:
         reservations:
           cpus: '0.1'
 
-  grafana:
-    image: grafana/grafana:5.3.4
-    networks:
-      - nginx
-      - influxdb
-    environment:
-      GF_SERVER_ROOT_URL: "https://grafana.ergoplatform.com"
-    volumes:
-      - grafana-data:/var/lib/grafana:rw
-      - grafana-logs:/var/log/grafana:rw
-      - grafana-conf:/etc/grafana:rw
-    deploy:
-      placement:
-        constraints:
-          - node.hostname == swarm01
-
   portainer:
     image: portainer/portainer
     networks:
@@ -143,9 +127,6 @@ networks:
 
 volumes:
   portainer:
-  grafana-data:
-  grafana-logs:
-  grafana-conf:
   jenkins:
   jenkins-slave-01:
   nginx-logs:

@@ -13,6 +13,12 @@ configurator:
   directories:
     /backup:
 
+    # Grafana data directory
+    grafana:
+      dir: /data/grafana
+      owner: 472
+      group: 472
+
   files:
     # rsnapshot
     - file: /etc/rsnapshot.conf
