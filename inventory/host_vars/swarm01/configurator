@@ -19,6 +19,17 @@ configurator:
       owner: 472
       group: 472
 
+    # Nginx logs
+    /data/nginx-logs:
+
+    # Certbot (official EFF ACME client)
+    /data/certbot:
+    /data/certbot/etc:
+    /data/certbot/lib:
+    /data/certbot/log:
+    # Certbot webroot (shared with nginx or another web-server with SSL termination)
+    /data/certbot/webroot:
+
   files:
     # rsnapshot
     - file: /etc/rsnapshot.conf

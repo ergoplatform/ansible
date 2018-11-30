@@ -20,7 +20,7 @@ services:
       - /data/nginx-logs:/var/log/nginx
       - /data/certbot/webroot:/var/www/webroot
       - /data/certbot/etc:/etc/letsencrypt
-      - /data/ssl:/ssl
+      - /data/configs/nginx/ssl:/ssl
       - type: tmpfs
         target: /var/cache/nginx
         tmpfs:

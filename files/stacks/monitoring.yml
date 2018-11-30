@@ -148,7 +148,7 @@ networks:
     name: databases_influxdb
   nginx:
     external: true
-    name: infrastructure_nginx
+    name: httpd_nginx
   explorer_postgres:
     external: true
 

@@ -2,54 +2,6 @@ version: '3.7'
 
 services:
 
-  nginx:
-    image: nginx:stable-alpine
-    ports:
-      - target: 80
-        published: 80
-        protocol: tcp
-        mode: host
-      - target: 443
-        published: 443
-        protocol: tcp
-        mode: host
-    networks:
-      - nginx
-    volumes:
-      - /data/configs/nginx:/etc/nginx:ro
-      - nginx-logs:/var/log/nginx
-      - certbot-webroot:/webroot
-      - certbot-etc:/etc/letsencrypt
-      - /data/configs/nginx/ssl:/ssl
-      - type: tmpfs
-        target: /var/cache/nginx
-        tmpfs:
-          size: 104857600 # 100 Mb
-      - type: tmpfs
-        target: /run
-        tmpfs:
-          size: 1048576 # 1 Mb
-    deploy:
-      placement:
-        constraints:
-          - node.hostname == swarm01
-
-  certbot:
-    image: certbot/certbot
-    command: renew --no-self-upgrade --agree-tos --text --non-interactive --keep-until-expiring --expand --email andyceo@yandex.ru
-    volumes:
-      - certbot-etc:/etc/letsencrypt
-      - certbot-lib:/var/lib/letsencrypt
-      - certbot-log:/var/log/letsencrypt
-      - certbot-webroot:/webroot
-    deploy:
-      placement:
-        constraints:
-          - node.hostname == swarm01
-      restart_policy:
-        condition: any
-        delay: 48h
-
   jenkins:
     image: jenkins/jenkins:lts-alpine
     networks:
@@ -117,6 +69,8 @@ services:
 
 networks:
   nginx:
+    external: true
+    name: httpd_nginx
   jenkins:
   influxdb:
     external: true
@@ -130,7 +84,3 @@ volumes:
   jenkins:
   jenkins-slave-01:
   nginx-logs:
-  certbot-etc:
-  certbot-lib:
-  certbot-log:
-  certbot-webroot:

@@ -53,7 +53,7 @@ networks:
     external: true
   nginx:
     external: true
-    name: infrastructure_nginx
+    name: httpd_nginx
   influxdb:
     external: true
     name: databases_influxdb

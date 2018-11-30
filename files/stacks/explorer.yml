@@ -43,7 +43,7 @@ services:
 networks:
   nginx:
     external: true
-    name: infrastructure_nginx
+    name: httpd_nginx
   postgres:
 
 volumes:
