@@ -1,0 +1,55 @@
+version: '3.7'
+
+services:
+
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+        mode: host
+      - target: 443
+        published: 443
+        protocol: tcp
+        mode: host
+    networks:
+      - nginx
+    volumes:
+      - /data/configs/nginx:/etc/nginx:ro
+      - /data/nginx-logs:/var/log/nginx
+      - /data/certbot/webroot:/var/www/webroot
+      - /data/certbot/etc:/etc/letsencrypt
+      - /data/ssl:/ssl
+      - type: tmpfs
+        target: /var/cache/nginx
+        tmpfs:
+          size: 104857600 # 100 Mb
+      - type: tmpfs
+        target: /run
+        tmpfs:
+          size: 1048576 # 1 Mb
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == swarm01
+
+  # Default entrypoint and command are changed to set up build-in cron job to periodically execute certificates renewal
+  certbot:
+    image: certbot/certbot
+    entrypoint: /bin/sh
+    command: -c 'echo "30 2 */2 * * certbot renew --no-self-upgrade --agree-tos --text --non-interactive --keep-until-expiring --expand --email andyceo@yandex.ru" | crontab - && crond -f -L /dev/stdout'
+    volumes:
+      - /data/certbot/etc:/etc/letsencrypt
+      - /data/certbot/lib:/var/lib/letsencrypt
+      - /data/certbot/log:/var/log/letsencrypt
+      - /data/certbot/webroot:/letsencrypt-webroot
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == swarm01
+
+networks:
+  nginx:
+    driver: overlay
+    attachable: true
