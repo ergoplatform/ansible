@@ -1,0 +1,65 @@
+hostname = "kapacitor"
+data_dir = "/var/lib/kapacitor"
+skip-config-overrides = false
+default-retention-policy = ""
+
+[http]
+  bind-address = ":9092"
+  log-enabled = false
+  write-tracing = false
+  pprof-enabled = false
+  https-enabled = false
+  https-certificate = "/etc/ssl/kapacitor.pem"
+
+[config-override]
+  enabled = true
+
+[logging]
+    file = "/var/log/kapacitor/kapacitor.log"
+    level = "INFO"
+
+[load]
+  enabled = true
+  dir = "/etc/kapacitor/load"
+
+
+[replay]
+  dir = "/var/lib/kapacitor/replay"
+
+[task]
+  dir = "/var/lib/kapacitor/tasks"
+  snapshot-interval = "60s"
+
+[storage]
+  boltdb = "/var/lib/kapacitor/kapacitor.db"
+
+[[influxdb]]
+  enabled = true
+  default = true
+  name = "influxdbsys"
+  urls = ["http://influxdbsys:8086"]
+  username = "admin"
+  password = "{{ docker.swarm.secrets['admin-at-influxdb'].data }}"
+  timeout = 0
+  insecure-skip-verify = false
+  startup-timeout = "1m"
+  disable-subscriptions = false
+  subscription-mode = "server"
+  subscription-protocol = "http"
+  subscriptions-sync-interval = "1m0s"
+  kapacitor-hostname = "kapacitor"
+  http-port = 0
+  udp-bind = ""
+  udp-buffer = 1000
+  udp-read-buffer = 0
+  [influxdb.subscriptions]
+  [influxdb.excluded-subscriptions]
+
+[[slack]]
+  enabled = true
+  default = true
+  workspace = "ergoplatform"
+  url = "{{ docker.swarm.secrets['kapacitor-slack-url'].data }}"
+  channel = "#monitoring"
+  global = false
+  state-changes-only = false

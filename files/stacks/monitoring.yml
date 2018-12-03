@@ -2,11 +2,33 @@ version: '3.7'
 
 services:
 
+  influxdbsys:
+    image: influxdb:1.6-alpine
+    ports:
+      - mode: host
+        target: 8086
+        published: 8086
+        protocol: tcp
+      - mode: host
+        target: 8089
+        published: 8089
+        protocol: udp
+    networks:
+      - influxdbsys
+    volumes:
+      - /data/configs/influxdb/influxdbsys.conf:/etc/influxdb/influxdb.conf:ro
+      - /data/influxdbsys:/var/lib/influxdb:rw
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == swarm01
+
   grafana:
     image: grafana/grafana:5.3.4
     networks:
       - nginx
       - influxdb
+      - influxdbsys
     # For configuration examples, @see http://docs.grafana.org/installation/docker/
     environment:
       GF_SERVER_ROOT_URL: "https://grafana.ergoplatform.com"
@@ -22,7 +44,7 @@ services:
     image: andyceo/monitoring-certificate
     command: --daemon
     environment:
-      INFLUXDB_HOST: 'influxdb'
+      INFLUXDB_HOST: 'influxdbsys'
       INFLUXDB_PORT: 8086
       INFLUXDB_USER: telegraf
       INFLUXDB_PASSWORD_FILE: /run/secrets/telegraf-at-influxdb
@@ -30,7 +52,7 @@ services:
     secrets:
       - telegraf-at-influxdb
     networks:
-      - influxdb
+      - influxdbsys
     volumes:
       - certbot-etc:/etc/letsencrypt:ro
     deploy:
@@ -41,7 +63,7 @@ services:
   telegraf:
     image: telegraf:alpine
     networks:
-      - influxdb
+      - influxdbsys
       - nginx
       - explorer_postgres
     volumes:
@@ -52,14 +74,15 @@ services:
     volumes:
       - kapacitor-lib:/var/lib/kapacitor:rw
       - kapacitor-log:/var/log/kapacitor:rw
-      - /data/configs/kapacitor:/etc/kapacitor:ro
+      - /data/configs_rendered/kapacitor.conf:/etc/kapacitor:ro
     networks:
-      - influxdb
+      - influxdbsys
     deploy:
       replicas: 1
       placement:
         constraints:
           - node.hostname == swarm01
+
 
   node-info-monitor-209-97-138-187-mine1:
     image: ergoplatform/node-info-monitor
@@ -146,6 +169,7 @@ networks:
   influxdb:
     external: true
     name: databases_influxdb
+  influxdbsys:
   nginx:
     external: true
     name: httpd_nginx

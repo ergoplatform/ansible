@@ -15,6 +15,9 @@ configurator:
     /data/configs_rendered:
 
   templates:
+    kapacitor:
+      src: files/configs/kapacitor/kapacitor.conf.j2
+      dest: /data/configs_rendered/kapacitor.conf
     telegraf:
       src: files/configs/telegraf/swarm.conf.j2
       dest: /etc/telegraf/telegraf.conf

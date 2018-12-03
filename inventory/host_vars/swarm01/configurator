@@ -30,6 +30,12 @@ configurator:
     # Certbot webroot (shared with nginx or another web-server with SSL termination)
     /data/certbot/webroot:
 
+    # InfluxDB
+    /data/influxdb:
+
+    # InfluxDBSYS
+    /data/influxdbsys:
+
   files:
     # rsnapshot
     - file: /etc/rsnapshot.conf
