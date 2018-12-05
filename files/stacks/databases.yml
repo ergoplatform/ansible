@@ -3,7 +3,7 @@ version: '3.7'
 services:
 
   influxdb:
-    image: influxdb:1.6-alpine
+    image: influxdb:1.7-alpine
     volumes:
       - /data/influxdb:/var/lib/influxdb
     networks:

@@ -3,7 +3,7 @@ version: '3.7'
 services:
 
   influxdbsys:
-    image: influxdb:1.6-alpine
+    image: influxdb:1.7-alpine
     ports:
       - mode: host
         target: 8086
