@@ -20,6 +20,15 @@ configurator:
     /developers/developer-01:
     /developers/developer-02:
 
+    # Main Jenkins directory
+    jenkins:
+      dir: /data/jenkins
+      owner: 1000
+      group: 1000
+
+    # Jenkins slave 01 node data directory
+    /data/jenkins-slave-01:
+
     # Grafana data directory
     grafana:
       dir: /data/grafana

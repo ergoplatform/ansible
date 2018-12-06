@@ -2,40 +2,6 @@ version: '3.7'
 
 services:
 
-  jenkins:
-    image: jenkins/jenkins:lts-alpine
-    networks:
-      - nginx
-      - jenkins
-      - influxdb
-    volumes:
-      - jenkins:/var/jenkins_home
-    environment:
-      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/var/jenkins_home/sbt/bin
-      JAVA_OPTS: -Dhudson.footerURL=https://jenkins.ergoplatform.com -Dorg.apache.commons.jelly.tags.fmt.timeZone=Europe/Moscow
-      JENKINS_JAVA_OPTIONS: -Djava.awt.headless=true -Dhudson.security.csrf.requestfield=crumb -Xms128m -Xmx512m
-    deploy:
-      placement:
-        constraints:
-          - node.hostname == swarm01
-
-  jenkins-slave-01:
-    image: andyceo/phpdevenv:1.7-ubuntu16.04
-    volumes:
-      - jenkins-slave-01:/root
-    networks:
-      - jenkins
-    deploy:
-      placement:
-        constraints:
-          - node.hostname == swarm01
-      resources:
-        limits:
-          cpus: '3'
-          memory: 6G
-        reservations:
-          cpus: '0.1'
-
   portainer:
     image: portainer/portainer
     networks:
@@ -71,7 +37,6 @@ networks:
   nginx:
     external: true
     name: httpd_nginx
-  jenkins:
   influxdb:
     external: true
     name: databases_influxdb
@@ -81,6 +46,3 @@ networks:
 
 volumes:
   portainer:
-  jenkins:
-  jenkins-slave-01:
-  nginx-logs:
