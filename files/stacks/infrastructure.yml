@@ -7,7 +7,7 @@ services:
     networks:
       - nginx
     volumes:
-      - portainer:/data
+      - /data/portainer:/data
       - /var/run/docker.sock:/var/run/docker.sock
     deploy:
       placement:
@@ -43,6 +43,3 @@ networks:
   postgres:
     external: true
     name: explorer_postgres
-
-volumes:
-  portainer:

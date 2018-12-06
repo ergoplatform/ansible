@@ -52,6 +52,9 @@ configurator:
     # InfluxDBSYS
     /data/influxdbsys:
 
+    # Portainer
+    /data/portainer:
+
   files:
     # rsnapshot
     - file: /etc/rsnapshot.conf
