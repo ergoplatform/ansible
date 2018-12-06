@@ -11,7 +11,14 @@ configurator:
       dest: /data
 
   directories:
+
+    # Backup directory
     /backup:
+
+    # Developers directories
+    /developers:
+    /developers/developer-01:
+    /developers/developer-02:
 
     # Grafana data directory
     grafana:

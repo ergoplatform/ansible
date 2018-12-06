@@ -1,11 +1,11 @@
-version: '3.5'
+version: '3.7'
 
 services:
 
   d01:
     image: andyceo/phpdevenv:latest
     volumes:
-      - developer-01:/root
+      - /data/developers/developer-01:/root
     networks:
       - testnet_ergo
       - nginx
@@ -30,7 +30,7 @@ services:
   d02:
     image: andyceo/phpdevenv:latest
     volumes:
-      - developer-02:/root
+      - /data/developers/developer-02:/root
     networks:
       - testnet_ergo
       - nginx
