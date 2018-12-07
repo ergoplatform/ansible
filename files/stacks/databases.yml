@@ -20,31 +20,5 @@ services:
         constraints:
           - node.hostname == swarm01
 
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.5.1
-    networks:
-      - elasticsearch
-    environment:
-      discovery.type: single-node
-    volumes:
-      - elasticsearch-conf:/usr/share/elasticsearch/config
-      - elasticsearch-data:/usr/share/elasticsearch/data
-      - elasticsearch-logs:/usr/share/elasticsearch/logs
-      - type: tmpfs
-        target: /tmp
-        tmpfs:
-          size: 104857600 # 100 Mb
-    deploy:
-      placement:
-        constraints:
-          - node.hostname == swarm01
-
 networks:
   influxdb:
-  elasticsearch:
-
-volumes:
-  influxdb:
-  elasticsearch-conf:
-  elasticsearch-data:
-  elasticsearch-logs:
