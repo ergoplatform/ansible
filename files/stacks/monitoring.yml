@@ -78,10 +78,11 @@ services:
   kapacitor:
     image: kapacitor:1.5-alpine
     volumes:
-      - kapacitor-lib:/var/lib/kapacitor:rw
-      - kapacitor-log:/var/log/kapacitor:rw
-      - /data/configs_rendered/kapacitor.conf:/etc/kapacitor:ro
+      - /data/kapacitor/lib:/var/lib/kapacitor:rw
+      - /data/kapacitor/log:/var/log/kapacitor:rw
+      - /data/configs_rendered/kapacitor.conf:/etc/kapacitor/kapacitor.conf:ro
     networks:
+      - influxdb
       - influxdbsys
     deploy:
       replicas: 1

@@ -52,6 +52,11 @@ configurator:
     # InfluxDBSYS
     /data/influxdbsys:
 
+    # Kapacitor
+    /data/kapacitor:
+    /data/kapacitor/lib:
+    /data/kapacitor/log:
+
     # Portainer
     /data/portainer:
 
