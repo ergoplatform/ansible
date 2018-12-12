@@ -60,7 +60,7 @@ services:
     networks:
       - influxdbsys
     volumes:
-      - certbot-etc:/etc/letsencrypt:ro
+      - /data/certbot/etc:/etc/letsencrypt:ro
     deploy:
       placement:
         constraints:
@@ -189,8 +189,5 @@ secrets:
     external: true
 
 volumes:
-  certbot-etc:
-    external: true
-    name: infrastructure_certbot-etc
   kapacitor-lib:
   kapacitor-log:
