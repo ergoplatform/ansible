@@ -68,7 +68,3 @@ networks:
   elasticsearch:
     external: true
     name: databases_elasticsearch
-
-volumes:
-  developer-01:
-  developer-02:
