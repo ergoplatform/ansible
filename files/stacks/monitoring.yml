@@ -188,7 +188,3 @@ secrets:
     external: true
   testnet-at-influxdb:
     external: true
-
-volumes:
-  kapacitor-lib:
-  kapacitor-log:
