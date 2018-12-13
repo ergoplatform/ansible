@@ -6,6 +6,11 @@ services:
     image: influxdb:1.7-alpine
     volumes:
       - /data/influxdb:/var/lib/influxdb
+    ports:
+      - mode: host
+        target: 8086
+        published: 8087
+        protocol: tcp
     networks:
       - influxdb
     environment:
