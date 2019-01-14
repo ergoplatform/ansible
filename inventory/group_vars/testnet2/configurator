@@ -1,0 +1,9 @@
+---
+
+configurator:
+
+  files:
+
+    # Copy Ergo config file
+    - file: /data/ergo/application.conf
+      src: files/configs/ergo-testnet2/{{ inventory_hostname }}.conf
