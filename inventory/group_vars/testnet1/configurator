@@ -2,25 +2,8 @@
 
 configurator:
 
-  directories:
-
-    # Base data directory
-    /data:
-
-    # Ergo directory
-    /data/ergo:
-
-    # remove old blockchain data
-    /data/ergo/data:
-    #  state: absent
-
   files:
 
     # Copy Ergo config file
     - file: /data/ergo/application.conf
       src: files/configs/ergo-testnet/{{ inventory_hostname }}.conf
-
-  templates:
-    testnet_env_vars:
-      src: files/configs/profile.d/testnet_env_vars.sh.j2
-      dest: /etc/profile.d/testnet_env_vars.sh
