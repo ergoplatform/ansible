@@ -13,7 +13,6 @@ testnet1-light-ubuntu-s-1vcpu-2gb-lon1-01 ansible_host=209.97.136.204
 [testnet2]
 testnet2-mine1-199 ansible_host=159.65.139.199
 testnet2-mine2-122 ansible_host=157.230.159.122
-testnet2-light-165 ansible_host=188.166.38.165
 
 [devnodes]
 developer-01 ansible_host=188.166.109.25 ansible_ssh_port=40023
