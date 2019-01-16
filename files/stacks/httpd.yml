@@ -43,7 +43,7 @@ services:
       - /data/certbot/etc:/etc/letsencrypt
       - /data/certbot/lib:/var/lib/letsencrypt
       - /data/certbot/log:/var/log/letsencrypt
-      - /data/certbot/webroot:/letsencrypt-webroot
+      - /data/certbot/webroot:/webroot
     deploy:
       placement:
         constraints:
