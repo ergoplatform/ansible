@@ -1,8 +1,0 @@
----
-
-preconf:
-  hostname:
-    apply: yes
-    hostname: testnet2-mine2-122
-    fqdn: testnet2-mine2-122
-    ipv4: 127.0.1.1
