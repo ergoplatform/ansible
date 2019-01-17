@@ -30,7 +30,7 @@ services:
           - node.hostname == swarm01
 
   grafana:
-    image: grafana/grafana:5.3.4
+    image: grafana/grafana:5.4.3
     networks:
       - nginx
       - influxdb
