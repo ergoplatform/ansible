@@ -1,7 +1,5 @@
 ---
 
 docker:
-  config:
-    pin_docker_engine_to_version: 18.03.1~ce-0~ubuntu
   swarm:
     manager: swarm01
