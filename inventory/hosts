@@ -2,6 +2,12 @@
 swarm01 ansible_host=188.166.109.25
 explorer ansible_host=167.99.44.242
 
+[docker]
+it-tests
+
+[docker:children]
+docker-swarm
+
 [servers]
 it-tests
 
