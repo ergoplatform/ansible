@@ -35,7 +35,8 @@ configurator:
       owner: 472
       group: 472
 
-    # Nginx logs
+    # Nginx static files and logs
+    /data/nginx-files:
     /data/nginx-logs:
 
     # Certbot (official EFF ACME client)

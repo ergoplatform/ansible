@@ -25,6 +25,7 @@ services:
     hostname: jenkins-slave-01
     volumes:
       - /data/jenkins-slave-01:/root
+      - /data/nginx-files:/nginx-files
     deploy:
       placement:
         constraints:
