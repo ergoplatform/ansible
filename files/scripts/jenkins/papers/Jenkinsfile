@@ -1,0 +1,72 @@
+pipeline {
+    agent { label 'slave' }
+    stages {
+        stage('Clone or update repositories') {
+            steps {
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: 'refs/heads/master']],
+                    doGenerateSubmoduleConfigurations: false,
+                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'ergo']],
+                    submoduleCfg: [],
+                    userRemoteConfigs: [[url: 'https://github.com/ergoplatform/ergo.git']]
+                ])
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: 'refs/heads/master']],
+                    doGenerateSubmoduleConfigurations: false,
+                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'sigmastate-interpreter']],
+                    submoduleCfg: [],
+                    userRemoteConfigs: [[url: 'https://github.com/ScorexFoundation/sigmastate-interpreter.git']]
+                ])
+            }
+        }
+        stage('Install needed packages') {
+            steps {
+                sh('apt install texlive-latex-base texlive-binaries texlive-science texlive-fonts-recommended latex-xcolor texlive-latex-extra cm-super')
+            }
+        }
+        stage('Main Ergo book') {
+            steps {
+                dir('ergo/papers/yellow') {
+                    sh('./compile.sh')
+                }
+            }
+        }
+        stage('POW Ergo book') {
+            steps {
+                dir('ergo/papers/yellow/pow') {
+                    sh('./compile.sh')
+                }
+            }
+        }
+        stage('Teaser Ergo book') {
+            steps {
+                dir('ergo/papers/teaser') {
+                    sh('./compile.sh')
+                }
+            }
+        }
+        stage('Sigmastate wpaper') {
+            steps {
+                dir('sigmastate-interpreter/docs/wpaper') {
+                    sh('./compile.sh')
+                }
+            }
+        }
+        stage('Sigmastate protocols book') {
+            steps {
+                dir('sigmastate-interpreter/docs/sigmastate_protocols') {
+                    sh('./compile.sh')
+                }
+            }
+        }
+        stage('Copy books to Nginx folder') {
+            steps {
+                sh('mkdir -p /nginx-files/docs.ergoplatform.com')
+                // Backslash is escaped, be attentive
+                sh('find . -type f -name *.pdf -exec cp -pf {} /nginx-files/docs.ergoplatform.com/ \\;')
+            }
+        }
+    }
+}
