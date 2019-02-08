@@ -13,6 +13,7 @@ configurator:
   directories:
     /data:
     /data/configs_rendered:
+    /data/logs:
 
   templates:
     kapacitor:

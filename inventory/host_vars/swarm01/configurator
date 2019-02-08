@@ -55,8 +55,7 @@ configurator:
 
     # Kapacitor
     /data/kapacitor:
-    /data/kapacitor/lib:
-    /data/kapacitor/log:
+    /data/logs/kapacitor:
 
     # Portainer
     /data/portainer:

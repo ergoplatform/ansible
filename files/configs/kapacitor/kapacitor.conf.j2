@@ -1,37 +1,8 @@
 hostname = "kapacitor"
 data_dir = "/var/lib/kapacitor"
-skip-config-overrides = false
-default-retention-policy = ""
 
 [http]
-  bind-address = ":9092"
   log-enabled = false
-  write-tracing = false
-  pprof-enabled = false
-  https-enabled = false
-  https-certificate = "/etc/ssl/kapacitor.pem"
-
-[config-override]
-  enabled = true
-
-[logging]
-    file = "/var/log/kapacitor/kapacitor.log"
-    level = "INFO"
-
-[load]
-  enabled = true
-  dir = "/etc/kapacitor/load"
-
-
-[replay]
-  dir = "/var/lib/kapacitor/replay"
-
-[task]
-  dir = "/var/lib/kapacitor/tasks"
-  snapshot-interval = "60s"
-
-[storage]
-  boltdb = "/var/lib/kapacitor/kapacitor.db"
 
 [[influxdb]]
   enabled = true
