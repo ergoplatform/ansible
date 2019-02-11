@@ -21,7 +21,7 @@ services:
           - node.hostname == swarm01
 
   jenkins-slave-01:
-    image: andyceo/phpdevenv:1.8-ubuntu16.04
+    image: andyceo/phpdevenv:1.9-ubuntu16.04
     hostname: jenkins-slave-01
     volumes:
       - /data/jenkins-slave-01:/root

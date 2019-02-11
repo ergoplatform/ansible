@@ -19,11 +19,17 @@ pipeline {
                     submoduleCfg: [],
                     userRemoteConfigs: [[url: 'https://github.com/ScorexFoundation/sigmastate-interpreter.git']]
                 ])
+                dir('ergo') {
+                    sh('git clean -fdx')
+                }
+                dir('sigmastate-interpreter') {
+                    sh('git clean -fdx')
+                }
             }
         }
         stage('Install needed packages') {
             steps {
-                sh('apt install texlive-latex-base texlive-binaries texlive-science texlive-fonts-recommended latex-xcolor texlive-latex-extra cm-super')
+                sh('apt install -yqq texlive-latex-base texlive-binaries texlive-fonts-recommended texlive-science latex-xcolor texlive-latex-extra cm-super texlive-full')
             }
         }
         stage('Main Ergo book') {
@@ -64,6 +70,7 @@ pipeline {
         stage('Copy books to Nginx folder') {
             steps {
                 sh('mkdir -p /nginx-files/docs.ergoplatform.com')
+                sh('rm -rf /nginx-files/docs.ergoplatform.com/*')
                 // Backslash is escaped, be attentive
                 sh('find . -type f -name *.pdf -exec cp -pf {} /nginx-files/docs.ergoplatform.com/ \\;')
             }
