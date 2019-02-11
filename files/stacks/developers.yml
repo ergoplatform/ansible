@@ -3,7 +3,7 @@ version: '3.7'
 services:
 
   d01:
-    image: andyceo/phpdevenv:1.8-ubuntu16.04
+    image: andyceo/phpdevenv:1.9-ubuntu16.04
     hostname: developer-01
     volumes:
       - /data/developers/developer-01:/root
@@ -29,7 +29,7 @@ services:
         condition: any
 
   d02:
-    image: andyceo/phpdevenv:1.8-ubuntu16.04
+    image: andyceo/phpdevenv:1.9-ubuntu16.04
     hostname: developer-02
     volumes:
       - /data/developers/developer-02:/root
