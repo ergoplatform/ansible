@@ -1,11 +1,12 @@
 #!/usr/bin/env sh
 
 MAXWAIT=60
+WASKILL9=false
 NODE_BASE_DIR=/data/ergo
 NODE_JAR=${NODE_BASE_DIR}/ergo.jar
 NODE_CONFIG=${NODE_BASE_DIR}/application.conf
 NODE_LOG=${NODE_BASE_DIR}/ergo_norotate.log
-NODE_PARAMS=
+NODE_PARAMS="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/java_build_id${BUILD_ID}.hprof"
 NODE_DATA_DIR=${NODE_BASE_DIR}/data
 PIDS=$(pgrep -f "ergo.*\.jar")
 FOUND=$?
@@ -35,8 +36,16 @@ do
         i=0
         while kill -0 ${pid}; do
             if [ "$i" -gt "${MAXWAIT}" ]; then
-                echo "Error: Waited more than ${MAXWAIT} seconds for process with pid ${pid} to die. Giving up." >&2
-                exit 3
+                echo "Error: Waited more than ${MAXWAIT} seconds for process with pid ${pid} to die." >&2
+                if [ "$WASKILL9" = true ] ; then
+                    echo "Error: Waited more than ${MAXWAIT} seconds after kill -9 ${pid}. Giving up." >&2
+                    exit 3
+                else
+                    echo "Trying kill -9 ${pid} and wait another ${MAXWAIT} seconds until it die..."
+                    kill -9 ${pid}
+                    WASKILL9=true
+                    i=0
+                fi
             fi
             i=$((i + 1))
             sleep 1
@@ -55,8 +64,10 @@ echo "Starting Ergo node..."
 
 cp -pf $(find . -type f -name ${JARFILE_TO_SEEK}) ${NODE_JAR}
 
-if [ "$(hostname)" = 'testnet1-ubuntu-s-2vcpu-4gb-lon1-02' ]; then
-    NODE_PARAMS=-Xmx3G
+if [ "$(hostname)" = 'testnet1-light-ubuntu-s-1vcpu-2gb-lon1-01' ]; then
+    NODE_PARAMS="-Xmx2G ${NODE_PARAMS}"
+else
+    NODE_PARAMS="-Xmx4G ${NODE_PARAMS}"
 fi
 
 BUILD_ID=dontKillMe nohup java ${NODE_PARAMS} -jar ${NODE_JAR} ${NODE_CONFIG} > ${NODE_LOG} &
