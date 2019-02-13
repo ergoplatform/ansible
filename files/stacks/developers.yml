@@ -7,6 +7,7 @@ services:
     hostname: developer-01
     volumes:
       - /data/developers/developer-01:/root
+      - /data/nginx-files:/nginx-files
     networks:
       - testnet_ergo
       - nginx
@@ -33,6 +34,7 @@ services:
     hostname: developer-02
     volumes:
       - /data/developers/developer-02:/root
+      - /data/nginx-files:/nginx-files
     networks:
       - testnet_ergo
       - nginx
