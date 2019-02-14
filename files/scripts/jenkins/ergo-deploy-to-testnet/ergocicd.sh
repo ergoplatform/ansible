@@ -6,6 +6,9 @@ NODE_BASE_DIR=/data/ergo
 NODE_JAR=${NODE_BASE_DIR}/ergo.jar
 NODE_CONFIG=${NODE_BASE_DIR}/application.conf
 NODE_LOG=${NODE_BASE_DIR}/ergo_norotate.log
+NODE_LOG_PRESERVE_FILENAME_BASE=ergo_norotate_build_id
+NODE_LOG_PRESERVE=${NODE_BASE_DIR}/${NODE_LOG_PRESERVE_FILENAME_BASE}${BUILD_ID}.log
+MAXLOGS=10
 NODE_PARAMS="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/java_build_id${BUILD_ID}.hprof"
 NODE_DATA_DIR=${NODE_BASE_DIR}/data
 PIDS=$(pgrep -f "ergo.*\.jar")
@@ -28,7 +31,7 @@ do
     if [ "${FOUND}" -eq 0 ] && [ -n "${pid}" ]; then
 
         if ! kill ${pid}; then
-            echo "Error: Am not allowed to kill process ${pid}. Quitting." >&2
+            echo "Error: I am not allowed to kill process ${pid}. Quitting." >&2
             exit 2
         fi
 
@@ -49,6 +52,18 @@ do
             fi
             i=$((i + 1))
             sleep 1
+        done
+
+        echo "Process ${pid} was killed, moving previous logs from ${NODE_LOG} to ${NODE_LOG_PRESERVE}"
+        mv ${NODE_LOG} ${NODE_LOG_PRESERVE}
+
+        echo "Clean up old preserved logs..."
+        i=0
+        ls -1r ${NODE_BASE_DIR}/${NODE_LOG_PRESERVE_FILENAME_BASE}*.log | while read filename; do
+            i=$((i + 1))
+            if [ "$i" -gt "${MAXLOGS}" ]; then
+                rm filename
+            fi
         done
 
     fi
