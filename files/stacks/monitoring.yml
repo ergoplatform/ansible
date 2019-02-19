@@ -81,6 +81,7 @@ services:
       - /data/kapacitor:/var/lib/kapacitor:rw
       - /data/logs/kapacitor:/var/log/kapacitor:rw
       - /data/configs_rendered/kapacitor.conf:/etc/kapacitor/kapacitor.conf:ro
+      - /data/configs/kapacitor/load:/etc/kapacitor/load:ro
     networks:
       - influxdb
       - influxdbsys

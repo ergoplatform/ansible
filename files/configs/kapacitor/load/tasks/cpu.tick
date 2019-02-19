@@ -10,7 +10,6 @@ stream
     |window()
         .period(1m)
         .every(20s)
-    |percentile('usage_total', 95.0)
     |alert()
         .message('{{ .ID }} is {{ .Level}}: CPU total usage is {{ index .Fields "usage_total" | printf "%0.2f" }}%')
         .warn(lambda: sigma("usage_total") > 3)
