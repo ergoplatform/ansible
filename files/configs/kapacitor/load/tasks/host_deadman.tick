@@ -6,6 +6,7 @@ stream
         .groupBy('host')
     |deadman(0.0, 30s)
         .id('{{ index .Tags "host" }}')
-        .stateChangesOnly()
         .message('Host {{ .ID }} is {{ if eq .Level "OK" }}ONLINE{{ else }}OFFLINE{{ end }}')
+        .stateChangesOnly()
+        .log('/var/log/kapacitor/host_deadman_alerts.log')
         .slack()
