@@ -1,0 +1,11 @@
+dbrp "telegraf"."autogen"
+
+stream
+    |from()
+        .measurement('system')
+        .groupBy('host')
+    |deadman(0.0, 30s)
+        .id('{{ index .Tags "host" }}')
+        .stateChangesOnly()
+        .message('Host {{ .ID }} is {{ if eq .Level "OK" }}ONLINE{{ else }}OFFLINE{{ end }}')
+        .slack()
