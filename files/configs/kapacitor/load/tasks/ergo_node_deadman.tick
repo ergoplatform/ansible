@@ -1,0 +1,10 @@
+dbrp "monitoring"."autogen"
+
+stream
+    |from()
+        .measurement('node_info')
+    |groupBy('name')
+    |deadman(0.0, 1m)
+        .stateChangesOnly()
+        .log('/var/log/kapacitor/ergo_node_deadman.log')
+        .slack()
