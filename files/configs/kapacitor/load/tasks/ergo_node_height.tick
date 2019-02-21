@@ -1,0 +1,35 @@
+dbrp "monitoring"."autogen"
+
+var period=10m
+
+var data = stream
+    |from()
+        .measurement('node_info')
+    |groupBy('name')
+    |window()
+        .period(period)
+        .every(10s)
+
+var first = data
+    |min('headersHeight')
+        .as('headersHeight')
+
+var last = data
+    |last('headersHeight')
+        .as('headersHeight')
+
+var ip = data
+    |last('ip')
+        .as('ip')
+
+first
+    |join(last, ip)
+        .as('first', 'last', 'ip')
+    |alert()
+        .id('{{ index .Tags "name" }}')
+        .message('Ergo node {{ .ID }} (IP={{ index .Fields "ip.ip" }}) headersHeight={{ index .Fields "last.headersHeight" }} {{ if eq .Level "OK" }}is OK{{ else }}not changed for ' + string(period) + '{{ end }}')
+        .warn(lambda: "first.headersHeight" == "last.headersHeight")
+        .warnReset(lambda: "first.headersHeight" < "last.headersHeight")
+        .stateChangesOnly()
+        .log('/var/log/kapacitor/ergo_node_height.log')
+        .slack()
