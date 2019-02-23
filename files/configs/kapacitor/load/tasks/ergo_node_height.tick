@@ -1,6 +1,6 @@
 dbrp "monitoring"."autogen"
 
-var period=10m
+var period=15m
 
 var data = stream
     |from()
