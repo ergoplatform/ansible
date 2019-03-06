@@ -38,15 +38,7 @@
 [[inputs.diskio]]
   skip_serial_number = true
 
-[[inputs.kernel]]
 
-[[inputs.mem]]
-
-[[inputs.processes]]
-
-[[inputs.swap]]
-
-[[inputs.system]]
 
 [[inputs.docker]]
   endpoint = "unix:///var/run/docker.sock"
@@ -63,6 +55,16 @@
 
 [[inputs.fail2ban]]
   use_sudo = true
+
+[[inputs.kernel]]
+
+[[inputs.mem]]
+
+[[inputs.processes]]
+
+[[inputs.swap]]
+
+[[inputs.system]]
 
 [[inputs.net]]
   interfaces = ["eth[0-4]"]

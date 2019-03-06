@@ -53,6 +53,9 @@
   docker_label_exclude = ["annotation.kubernetes*", "maintainer", "org.labelschema.*"]
   tag_env = []
 
+[[inputs.fail2ban]]
+  use_sudo = true
+
 [[inputs.kernel]]
 
 [[inputs.mem]]
@@ -62,9 +65,6 @@
 [[inputs.swap]]
 
 [[inputs.system]]
-
-[[inputs.fail2ban]]
-  use_sudo = true
 
 [[inputs.net]]
   interfaces = ["eth[0-4]"]
