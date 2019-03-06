@@ -3,7 +3,7 @@ version: '3.6'
 services:
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.6.1
     networks:
       - elasticsearch
     environment:
@@ -19,10 +19,10 @@ services:
     deploy:
       placement:
         constraints:
-          - node.hostname == newhope
+          - node.hostname == swarm01
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:6.4.1
+    image: docker.elastic.co/kibana/kibana:6.6.1
     networks:
       - nginx
       - elasticsearch
@@ -32,19 +32,32 @@ services:
       NODE_OPTIONS: --max-old-space-size=200
 
   logstash:
-    image: docker.elastic.co/logstash/logstash:6.4.1
+    image: docker.elastic.co/logstash/logstash:6.6.1
     networks:
       - elasticsearch
       - logstash
-
-  filebeat:
-    image: docker.elastic.co/logstash/logstash:6.4.1
-    networks:
-      - logstash
+    ports:
+      - mode: host
+        target: 8097
+        published: 8097
+        protocol: tcp
+      - mode: host
+        target: 12201
+        published: 12201
+        protocol: udp
+    # Note that environment variables change logstash.yml file inplace, so it is better to choose one config method
+    environment:
+      HTTP_HOST: "0.0.0.0"
+      XPACK_MONITORING_ELASTICSEARCH_URL: "http://elasticsearch:9200"
+      CONFIG_RELOAD_AUTOMATIC: "true"
+      CONFIG_RELOAD_INTERVAL: "5s"
+    volumes:
+      - /data/configs/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
+      - /data/logstash:/usr/share/logstash/data
     deploy:
       placement:
         constraints:
-        - node.hostname == newhope
+          - node.hostname == swarm01
 
 networks:
   nginx:

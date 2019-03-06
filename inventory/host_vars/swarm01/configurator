@@ -60,6 +60,26 @@ configurator:
     # Portainer
     /data/portainer:
 
+    # Elasticsearch
+    elasticsearch:
+      dir: /data/elasticsearch
+    elasticsearch-conf:
+      dir: /data/elasticsearch/conf
+      owner: 1000
+      mode: 775
+    elasticsearch-data:
+      dir: /data/elasticsearch/data
+      owner: 1000
+      mode: 775
+    elasticsearch-logs:
+      dir: /data/elasticsearch/logs
+      owner: 1000
+      mode: 775
+
+    # Logstash data directory
+    logstash:
+      dir: /data/logstash
+
   files:
     # rsnapshot
     - file: /etc/rsnapshot.conf
