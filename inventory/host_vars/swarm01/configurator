@@ -79,6 +79,8 @@ configurator:
     # Logstash data directory
     logstash:
       dir: /data/logstash
+      owner: 1000
+      group: root
 
   files:
     # rsnapshot
