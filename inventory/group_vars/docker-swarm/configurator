@@ -19,10 +19,6 @@ configurator:
     kapacitor:
       src: files/configs/kapacitor/kapacitor.conf.j2
       dest: /data/configs_rendered/kapacitor.conf
-    telegraf:
-      src: files/configs/telegraf/swarm.conf.j2
-      dest: /etc/telegraf/telegraf.conf
-      notify: telegraf-restart
     telegraf-inswarm:
       src: files/configs/telegraf/inswarm.conf.j2
       dest: /data/configs_rendered/inswarm.conf

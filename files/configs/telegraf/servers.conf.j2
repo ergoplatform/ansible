@@ -1,6 +1,7 @@
 [global_tags]
   dc = "digitalocean"
-  group = "servers"
+  group = "{{ 'docker-swarm' if 'docker-swarm' in group_names else 'server' }}"
+
 [agent]
   interval = "10s"
   round_interval = true
