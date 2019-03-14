@@ -12,7 +12,6 @@ docker-swarm
 it-tests
 
 [testnet1]
-testnet1-ubuntu-s-2vcpu-4gb-lon1-01 ansible_host=209.97.138.187
 testnet1-ubuntu-s-2vcpu-4gb-lon1-02 ansible_host=209.97.134.210
 testnet1-light-ubuntu-s-1vcpu-2gb-lon1-01 ansible_host=209.97.136.204
 

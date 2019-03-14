@@ -92,15 +92,6 @@ services:
           - node.hostname == swarm01
 
 
-  node-info-monitor-209-97-138-187-mine1:
-    image: ergoplatform/node-info-monitor
-    environment:
-      MONITORING_NODE_URL: "http://209.97.138.187:9052"
-    secrets:
-      - testnet-at-influxdb
-    networks:
-      - influxdb
-
   node-info-monitor-209-97-134-210-mine2:
     image: ergoplatform/node-info-monitor
     environment:
