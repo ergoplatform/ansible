@@ -128,6 +128,24 @@ services:
     networks:
       - influxdb
 
+  node-info-monitor-testnet2-mine1-185:
+    image: ergoplatform/node-info-monitor
+    environment:
+      MONITORING_NODE_URL: "http://206.189.130.185:9052"
+    secrets:
+      - testnet-at-influxdb
+    networks:
+      - influxdb
+
+  node-info-monitor-testnet2-mine1-162:
+    image: ergoplatform/node-info-monitor
+    environment:
+      MONITORING_NODE_URL: "http://159.203.36.162:9052"
+    secrets:
+      - testnet-at-influxdb
+    networks:
+      - influxdb
+
   node-info-monitor-78-46-93-239:
     image: ergoplatform/node-info-monitor
     environment:
@@ -177,6 +195,15 @@ services:
     image: ergoplatform/node-info-monitor
     environment:
       MONITORING_NODE_URL: "http://178.128.162.150:9052"
+    secrets:
+      - testnet-at-influxdb
+    networks:
+      - influxdb
+
+  node-info-monitor-93-123-180-164:
+    image: ergoplatform/node-info-monitor
+    environment:
+      MONITORING_NODE_URL: "http://93.123.180.164:9052"
     secrets:
       - testnet-at-influxdb
     networks:
