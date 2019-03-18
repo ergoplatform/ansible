@@ -11,23 +11,22 @@ var data = stream
         .every(10s)
 
 var first = data
-    |min('headersHeight')
+    |first('headersHeight')
         .as('headersHeight')
+        .quiet()
 
 var last = data
     |last('headersHeight')
         .as('headersHeight')
-
-var ip = data
-    |last('ip')
-        .as('ip')
+        .quiet()
 
 first
-    |join(last, ip)
-        .as('first', 'last', 'ip')
+    |join(last)
+        .as('first', 'last')
+//    |httpOut('after_join')
     |alert()
         .id('{{ index .Tags "name" }}')
-        .message('Ergo node {{ .ID }} (IP={{ index .Fields "ip.ip" }}) headersHeight={{ index .Fields "last.headersHeight" }} {{ if eq .Level "OK" }}is OK{{ else }}not changed for ' + string(period) + '{{ end }}')
+        .message('Ergo node {{ .ID }} (IP={{ index .Fields "last.ip" }}) headersHeight={{ index .Fields "last.headersHeight" }} {{ if eq .Level "OK" }}is OK{{ else }}not changed for ' + string(period) + '{{ end }}')
         .warn(lambda: "first.headersHeight" == "last.headersHeight")
         .warnReset(lambda: "first.headersHeight" < "last.headersHeight")
         .stateChangesOnly()
