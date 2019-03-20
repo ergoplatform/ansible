@@ -4,7 +4,7 @@ stream
     |from()
         .measurement('system')
         .groupBy('host')
-    |deadman(0.0, 30s)
+    |deadman(0.0, 1m)
         .id('{{ index .Tags "host" }}')
         .message('Host {{ .ID }} is {{ if eq .Level "OK" }}ONLINE{{ else }}OFFLINE{{ end }}')
         .stateChangesOnly()
