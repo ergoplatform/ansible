@@ -26,7 +26,7 @@ first
 //    |httpOut('after_join')
     |alert()
         .id('{{ index .Tags "name" }}')
-        .message('{{ .Time.Local.Format "2006-01-01 15:04:05 UTC" }}: Ergo node {{ .ID }} (IP={{ index .Fields "last.ip" }}) headersHeight={{ index .Fields "last.headersHeight" }} {{ if eq .Level "OK" }}is OK{{ else }}not changed for ' + string(period) + '{{ end }}')
+        .message('{{ .Time.Local.Format "2006-01-02 15:04:05 UTC" }}: Ergo node {{ .ID }} (IP={{ index .Fields "last.ip" }}) headersHeight={{ index .Fields "last.headersHeight" }} {{ if eq .Level "OK" }}is OK{{ else }}not changed for ' + string(period) + '{{ end }}')
         .warn(lambda: "first.headersHeight" == "last.headersHeight")
         .warnReset(lambda: "first.headersHeight" < "last.headersHeight")
         .stateChangesOnly()

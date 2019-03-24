@@ -6,7 +6,7 @@ stream
         .where(lambda: "path" == '/' OR "path" == '/backup' OR "path" == '/data')
     |groupBy('host', 'path')
     |alert()
-        .message('{{ .Time.Local.Format "2006-01-01 15:04:05 UTC" }}: {{ .ID }} is {{ .Level}}: total disk usage {{ index .Fields "used_percent" | printf "%0.2f" }}%')
+        .message('{{ .Time.Local.Format "2006-01-02 15:04:05 UTC" }}: {{ .ID }} is {{ .Level}}: total disk usage {{ index .Fields "used_percent" | printf "%0.2f" }}%')
         .warn(lambda: sigma("used_percent") > 3)
         // 5 368 709 120 bytes = 5Gb
         .crit(lambda: "free" < 5368709120)

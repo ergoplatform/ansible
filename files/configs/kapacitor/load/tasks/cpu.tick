@@ -11,7 +11,7 @@ stream
         .period(10m)
         .every(20s)
     |alert()
-        .message('{{ .Time.Local.Format "2006-01-01 15:04:05 UTC" }}: {{ .ID }} is {{ .Level}}: CPU total usage is {{ index .Fields "usage_total" | printf "%0.2f" }}%')
+        .message('{{ .Time.Local.Format "2006-01-02 15:04:05 UTC" }}: {{ .ID }} is {{ .Level}}: CPU total usage is {{ index .Fields "usage_total" | printf "%0.2f" }}%')
         .warn(lambda: sigma("usage_total") > 3)
         .stateChangesOnly()
         .log('/var/log/kapacitor/cpu_alerts.log')

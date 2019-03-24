@@ -6,7 +6,7 @@ stream
     |groupBy('name')
     |deadman(0.0, 1m)
         .id('{{ index .Tags "name" }}')
-        .message('{{ .Time.Local.Format "2006-01-01 15:04:05 UTC" }}: Ergo node {{ .ID }} is {{ if eq .Level "OK" }}ONLINE{{ else }}OFFLINE{{ end }}')
+        .message('{{ .Time.Local.Format "2006-01-02 15:04:05 UTC" }}: Ergo node {{ .ID }} is {{ if eq .Level "OK" }}ONLINE{{ else }}OFFLINE{{ end }}')
         .stateChangesOnly()
         .log('/var/log/kapacitor/ergo_node_deadman.log')
         .slack()
