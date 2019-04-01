@@ -1,0 +1,19 @@
+---
+
+# This file is actually for Ubuntu 16.04 (see Java version)
+
+preconf:
+
+  apt_keys:
+    openjdk-r:
+      state: present
+
+  repositories:
+    openjdk-r:
+      state: present
+    openjdk-r_src:
+      state: present
+
+  package_sets_install:
+    - common
+    - openjdk-r
