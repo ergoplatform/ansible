@@ -1,0 +1,49 @@
+pipeline {
+    agent { label 'slave' }
+    stages {
+        stage('Clone or update repositories') {
+            steps {
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: 'refs/heads/master']],
+                    doGenerateSubmoduleConfigurations: false,
+                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'ergo']],
+                    submoduleCfg: [],
+                    userRemoteConfigs: [[url: 'https://github.com/ergoplatform/ergo.git']]
+                ])
+            }
+        }
+
+        stage('org.ergoplatform.bench.BenchRunner') {
+            steps {
+                dir('ergo') {
+                    sh('sbt "benchmarks/test:runMain org.ergoplatform.bench.BenchRunner"')
+                }
+            }
+        }
+
+        stage('org.ergoplatform.nodeView.state.UtxoStateBenchmark') {
+            steps {
+                dir('ergo') {
+                    sh('sbt "benchmarks/test:runMain org.ergoplatform.nodeView.state.UtxoStateBenchmark"')
+                }
+            }
+        }
+
+        stage('org.ergoplatform.ModifiersApplicationBench') {
+            steps {
+                dir('ergo') {
+                    sh('sbt "benchmarks/test:runMain org.ergoplatform.ModifiersApplicationBench"')
+                }
+            }
+        }
+
+        stage('org.ergoplatform.nodeView.mempool.ErgoMemPoolBenchmark') {
+            steps {
+                dir('ergo') {
+                    sh('#sbt "benchmarks/test:runMain org.ergoplatform.nodeView.mempool.ErgoMemPoolBenchmark"')
+                }
+            }
+        }
+    }
+}
