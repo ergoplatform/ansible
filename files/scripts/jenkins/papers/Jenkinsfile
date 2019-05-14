@@ -53,6 +53,13 @@ pipeline {
                 }
             }
         }
+        stage('Ergo Whitepaper') {
+            steps {
+                dir('ergo/papers/whitepaper') {
+                    sh('./compile.sh')
+                }
+            }
+        }
         stage('Sigmastate wpaper') {
             steps {
                 dir('sigmastate-interpreter/docs/wpaper') {
@@ -70,7 +77,7 @@ pipeline {
         stage('Copy books to Nginx folder') {
             steps {
                 sh('mkdir -p /nginx-files/docs.ergoplatform.com')
-                sh('rm -rf /nginx-files/docs.ergoplatform.com/*')
+                sh('#rm -rf /nginx-files/docs.ergoplatform.com/*')
                 // Backslash is escaped, be attentive
                 sh('find . -type f -name *.pdf -exec cp -pf {} /nginx-files/docs.ergoplatform.com/ \\;')
             }
