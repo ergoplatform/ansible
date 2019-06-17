@@ -37,7 +37,7 @@ else
 fi
 
 echo "Delete outdated ${filename}..."
-find . -type f -name "${filename}" -print -delete
+find . -maxdepth 1 -type f -name "${filename}" -print -delete
 echo
 echo "There are following .jar files in target directory (hash and filename):"
 find target -type f -name "${ERGO_NODE_FILENAME_PATTERN}" -exec md5sum {} \;
