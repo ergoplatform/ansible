@@ -5,6 +5,7 @@ BRANCH_EXISTS=$?
 BRANCHES_COUNT=$(echo $BRANCH | wc -l)
 COMMIT_IN_MASTER=$(git branch -r --contains ${GIT_COMMIT} | grep -ni 'origin/master')
 COMMIT_IN_MASTER=$?
+ERGO_NODE_FILENAME_PATTERN=ergo-*.jar
 
 # ${GIT_COMMIT} variable is provided by Jenkins
 
@@ -35,6 +36,12 @@ else
     rc=0
 fi
 
-echo "Copy current .jar file to ./${filename}"
-find . -type f -name ergo-assembly*.jar -exec cp -pf {} ${filename} \;
+echo "Delete outdated ${filename}..."
+find . -type f -name "${filename}" -print -delete
+echo
+echo "There are following .jar files in target directory:"
+find target -type f -name "${ERGO_NODE_FILENAME_PATTERN}" -print
+echo
+echo "Copy current build .jar file to ./${filename} (actually the last printed filename copied)"
+find target -type f -name "${ERGO_NODE_FILENAME_PATTERN}" -print -exec cp -pf {} "${filename}" \;
 exit ${rc}
