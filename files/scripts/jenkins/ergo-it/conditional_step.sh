@@ -39,8 +39,8 @@ fi
 echo "Delete outdated ${filename}..."
 find . -type f -name "${filename}" -print -delete
 echo
-echo "There are following .jar files in target directory:"
-find target -type f -name "${ERGO_NODE_FILENAME_PATTERN}" -print
+echo "There are following .jar files in target directory (hash and filename):"
+find target -type f -name "${ERGO_NODE_FILENAME_PATTERN}" -exec md5sum {} \;
 echo
 echo "Copy current build .jar file to ./${filename} (actually the last printed filename copied)"
 find target -type f -name "${ERGO_NODE_FILENAME_PATTERN}" -print -exec cp -pf {} "${filename}" \;
