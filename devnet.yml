@@ -34,7 +34,6 @@
         - /.ergo
         - /data/ergo/.ergo
       tags:
-        - stopnet
         - removedata
 
     - name: Check Ergo node is running
