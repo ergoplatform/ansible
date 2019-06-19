@@ -4,12 +4,14 @@ explorer ansible_host=167.99.44.242
 
 [docker]
 it-tests
+test-explorer ansible_host=142.93.40.144
 
 [docker:children]
 docker-swarm
 
 [servers]
 it-tests
+test-explorer
 
 [testnet1]
 testnet1-ubuntu-s-2vcpu-4gb-lon1-02 ansible_host=209.97.134.210
@@ -36,3 +38,91 @@ ergonodes
 [common:children]
 servers
 devnodes
+devnet
+
+[devnet:children]
+devnet-1
+devnet-2
+
+[devnet-1]
+utxo-0 ansible_host=157.230.80.125
+utxo-1 ansible_host=178.128.38.1
+utxo-2 ansible_host=165.22.118.191
+utxo-3 ansible_host=165.22.120.252
+utxo-4 ansible_host=68.183.39.243
+utxo-5 ansible_host=134.209.31.51
+utxo-6 ansible_host=134.209.21.236
+utxo-7 ansible_host=165.22.124.3
+utxo-8 ansible_host=209.97.187.176
+utxo-9 ansible_host=134.209.183.82
+utxo-10 ansible_host=165.22.126.76
+digest-0 ansible_host=68.183.196.80
+digest-1 ansible_host=68.183.204.101
+digest-2 ansible_host=68.183.194.221
+digest-3 ansible_host=68.183.196.34
+
+[devnet-2]
+utxo-11 ansible_host=165.22.56.181
+utxo-12 ansible_host=165.22.52.86
+utxo-13 ansible_host=165.22.60.178
+utxo-14 ansible_host=165.22.54.185
+utxo-15 ansible_host=165.22.63.26
+utxo-16 ansible_host=165.22.56.182
+utxo-17 ansible_host=159.89.207.203
+utxo-18 ansible_host=165.22.62.54
+utxo-19 ansible_host=165.22.54.148
+utxo-20 ansible_host=165.22.62.51
+digest-4 ansible_host=139.59.74.116
+digest-5 ansible_host=139.59.42.254
+utxo-21 ansible_host=139.59.88.100
+utxo-22 ansible_host=139.59.77.41
+utxo-23 ansible_host=139.59.77.35
+utxo-24 ansible_host=139.59.75.69
+utxo-25 ansible_host=139.59.90.220
+utxo-26 ansible_host=139.59.77.185
+utxo-27 ansible_host=139.59.36.142
+utxo-28 ansible_host=139.59.70.1
+
+utxo-29 ansible_host=134.209.29.117
+utxo-30 ansible_host=134.209.6.22
+digest-6 ansible_host=134.209.14.33
+digest-7 ansible_host=134.209.6.59
+utxo-31 ansible_host=178.128.68.134
+utxo-32 ansible_host=134.209.6.240
+utxo-33 ansible_host=134.209.6.29
+utxo-34 ansible_host=134.209.6.38
+utxo-35 ansible_host=134.209.14.31
+utxo-36 ansible_host=134.209.6.5
+
+utxo-37 ansible_host=165.22.46.217
+utxo-38 ansible_host=165.22.46.236
+utxo-39 ansible_host=165.22.46.212
+utxo-40 ansible_host=165.22.46.239
+digest-8 ansible_host=165.22.46.131
+digest-9 ansible_host=165.22.46.222
+utxo-41 ansible_host=165.227.191.41
+utxo-42 ansible_host=165.227.191.230
+utxo-43 ansible_host=174.138.49.178
+utxo-44 ansible_host=165.227.191.195
+utxo-45 ansible_host=46.101.234.65
+utxo-46 ansible_host=46.101.121.130
+utxo-47 ansible_host=142.93.169.174
+utxo-48 ansible_host=68.183.208.163
+utxo-49 ansible_host=46.101.250.209
+utxo-50 ansible_host=68.183.76.189
+digest-10 ansible_host=157.230.96.227
+digest-11 ansible_host=46.101.129.100
+utxo-51 ansible_host=157.230.105.118
+utxo-52 ansible_host=46.101.217.178
+utxo-53 ansible_host=134.209.200.75
+utxo-54 ansible_host=134.209.200.109
+utxo-55 ansible_host=134.209.207.224
+utxo-56 ansible_host=134.209.192.239
+utxo-57 ansible_host=134.209.200.31
+utxo-58 ansible_host=134.209.207.244
+utxo-59 ansible_host=134.209.200.55
+utxo-60 ansible_host=134.209.207.249
+digest-12 ansible_host=134.209.207.46
+digest-13 ansible_host=134.209.200.22
+
+digest-14 ansible_host=134.209.6.46
