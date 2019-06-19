@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+
+{% for host in groups['devnet'] %}
+
+  {{ hostvars[host]['inventory_hostname'] }}_ip-{{ hostvars[host]['ansible_host'] | replace('.', '-') }}:
+    image: ergoplatform/node-info-monitor
+    environment:
+      MONITORING_NODE_URL: "http://{{ ansible_host }}:9052"
+    secrets:
+      - testnet-at-influxdb
+    networks:
+      - influxdb
+
+{% endfor %}
+
+networks:
+  influxdb:
+    external: true
+    name: databases_influxdb
+
+secrets:
+  testnet-at-influxdb:
+    external: true

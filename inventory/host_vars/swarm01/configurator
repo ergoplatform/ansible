@@ -92,3 +92,8 @@ configurator:
     - file: /etc/postfix/main.cf
       src: files/configs/postfix/main.cf
       notify: restart postfix
+
+  templates:
+    monitoring-devnet:
+      src: files/stacks/monitoring-devnet.yml.j2
+      dest: /data/configs_rendered/monitoring-devnet.yml
