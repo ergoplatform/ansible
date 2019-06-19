@@ -7,7 +7,7 @@ services:
   {{ hostvars[host]['inventory_hostname'] }}_ip-{{ hostvars[host]['ansible_host'] | replace('.', '-') }}:
     image: ergoplatform/node-info-monitor
     environment:
-      MONITORING_NODE_URL: "http://{{ ansible_host }}:9052"
+      MONITORING_NODE_URL: "http://{{ hostvars[host]['ansible_host'] }}:9052"
     secrets:
       - testnet-at-influxdb
     networks:
