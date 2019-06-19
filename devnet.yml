@@ -1,0 +1,51 @@
+---
+
+- hosts: all
+  become: yes
+
+  roles:
+    - role: andyceo.preconf
+      tags:
+        - preconf
+        - init
+
+    - role: andyceo.configurator
+      tags:
+        - configurator
+
+  tasks:
+    - name: Start Ergo as daemon
+      shell: daemon -- java -Xmx3G -jar /data/ergo/ergo.jar --devnet -c /data/ergo/application.conf
+      args:
+        chdir: /data/ergo
+      tags:
+        - startnet
+
+    - name: Stop Ergo daemon
+      shell: pkill -f 'daemon -- java'
+      tags:
+        - stopnet
+
+    - name: Remove Ergo data
+      file:
+        state: absent
+        path: "{{ item }}"
+      with_items:
+        - /.ergo
+        - /data/ergo/.ergo
+      tags:
+        - stopnet
+        - removedata
+
+    - name: Check Ergo node is running
+      shell: pgrep -f 'daemon -- java'
+      register: checknet
+      changed_when: false
+      tags:
+        - checknet
+
+    - name: Check Ergo node is running - print results
+      debug:
+        msg: "{{ checknet.stdout_lines }}"
+      tags:
+        - checknet
