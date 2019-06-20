@@ -40,11 +40,7 @@ servers
 devnodes
 devnet
 
-[devnet:children]
-devnet-1
-devnet-2
-
-[devnet-1]
+[devnet]
 utxo-0 ansible_host=157.230.80.125
 utxo-1 ansible_host=178.128.38.1
 utxo-2 ansible_host=165.22.118.191
@@ -60,8 +56,6 @@ digest-0 ansible_host=68.183.196.80
 digest-1 ansible_host=68.183.204.101
 digest-2 ansible_host=68.183.194.221
 digest-3 ansible_host=68.183.196.34
-
-[devnet-2]
 utxo-11 ansible_host=165.22.56.181
 utxo-12 ansible_host=165.22.52.86
 utxo-13 ansible_host=165.22.60.178
@@ -82,7 +76,6 @@ utxo-25 ansible_host=139.59.90.220
 utxo-26 ansible_host=139.59.77.185
 utxo-27 ansible_host=139.59.36.142
 utxo-28 ansible_host=139.59.70.1
-
 utxo-29 ansible_host=134.209.29.117
 utxo-30 ansible_host=134.209.6.22
 digest-6 ansible_host=134.209.14.33
@@ -93,7 +86,6 @@ utxo-33 ansible_host=134.209.6.29
 utxo-34 ansible_host=134.209.6.38
 utxo-35 ansible_host=134.209.14.31
 utxo-36 ansible_host=134.209.6.5
-
 utxo-37 ansible_host=165.22.46.217
 utxo-38 ansible_host=165.22.46.236
 utxo-39 ansible_host=165.22.46.212
@@ -124,5 +116,4 @@ utxo-59 ansible_host=134.209.200.55
 utxo-60 ansible_host=134.209.207.249
 digest-12 ansible_host=134.209.207.46
 digest-13 ansible_host=134.209.200.22
-
 digest-14 ansible_host=134.209.6.46
