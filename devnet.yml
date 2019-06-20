@@ -1,6 +1,6 @@
 ---
 
-- hosts: all
+- hosts: devnet
   become: yes
 
   roles:
