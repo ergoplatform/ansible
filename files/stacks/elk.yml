@@ -17,6 +17,7 @@ services:
         tmpfs:
           size: 104857600 # 100 Mb
     deploy:
+      replicas: 0
       placement:
         constraints:
           - node.hostname == swarm01
@@ -30,6 +31,8 @@ services:
       SERVER_NAME: kibana.services.ruware.com
       ELASTICSEARCH_URL: "http://elasticsearch:9200"
       NODE_OPTIONS: --max-old-space-size=200
+    deploy:
+      replicas: 0
 
   logstash:
     image: docker.elastic.co/logstash/logstash:6.6.2
@@ -55,6 +58,7 @@ services:
       - /data/configs/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
       - /data/logstash:/usr/share/logstash/data
     deploy:
+      replicas: 0
       placement:
         constraints:
           - node.hostname == swarm01

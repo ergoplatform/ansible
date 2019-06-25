@@ -28,10 +28,10 @@
   influx_uint_support = false
   namedrop = ["*-logs"]
 
-[[outputs.socket_writer]]
-  address = "tcp://188.166.109.25:8097"
-  data_format = "json"
-  namepass = ["*-logs"]
+#[[outputs.socket_writer]]
+#  address = "tcp://188.166.109.25:8097"
+#  data_format = "json"
+#  namepass = ["*-logs"]
 
 [[inputs.cpu]]
   percpu = true
@@ -82,15 +82,15 @@
 [[inputs.ntpq]]
   dns_lookup = true
 
-[[inputs.tail]]
-  name_override = "ergo-node-logs"
-  files = [
-    "/data/ergo/ergo_norotate.log",
-  ]
-  from_beginning = false
-  pipe = false
-  watch_method = "inotify"
-  data_format = "grok"
-  grok_patterns = [
-    "%{GREEDYDATA:log_line}"
-  ]
+#[[inputs.tail]]
+#  name_override = "ergo-node-logs"
+#  files = [
+#    "/data/ergo/ergo_norotate.log",
+#  ]
+#  from_beginning = false
+#  pipe = false
+#  watch_method = "inotify"
+#  data_format = "grok"
+#  grok_patterns = [
+#    "%{GREEDYDATA:log_line}"
+#  ]
