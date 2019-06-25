@@ -12,6 +12,10 @@ services:
       - testnet-at-influxdb
     networks:
       - influxdb
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == swarm01
 
 {% endfor %}
 
