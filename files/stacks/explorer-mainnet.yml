@@ -1,0 +1,51 @@
+version: '3.7'
+
+services:
+
+  postgres:
+    image: postgres:10-alpine
+    volumes:
+      - /data/postgres:/var/lib/postgresql/data:rw
+    networks:
+      - postgres-explorer-mainnet
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == explorer-mainnet
+
+  back:
+    image: ergoplatform/explorer-back
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/explorer
+      DB_USER: ergo
+      DB_PASS_FILE: /run/secrets/ergo-at-postgres-explorer-mainnet
+    networks:
+      - postgres-explorer-mainnet
+      - nginx
+    secrets:
+      - ergo-at-postgres-explorer-mainnet
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == explorer-mainnet
+
+  front:
+    image: ergoplatform/ergo-explorer
+    volumes:
+      - /data/configs/ergo-explorer-mainnet/app.config.js:/usr/src/app/build/client/app.config.js:ro
+    networks:
+      - nginx
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == explorer-mainnet
+
+networks:
+  nginx:
+    external: true
+    name: httpd_nginx
+  postgres-explorer-mainnet:
+
+secrets:
+  ergo-at-postgres-explorer-mainnet:
+    external: true
