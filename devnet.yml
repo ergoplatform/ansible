@@ -20,11 +20,13 @@
         chdir: /data/ergo
       tags:
         - startnet
+        - skip_ansible_lint
 
     - name: Stop Ergo daemon
       shell: pkill -f 'daemon -- java'
       tags:
         - stopnet
+        - skip_ansible_lint
 
     - name: Remove Ergo data
       file:
@@ -35,6 +37,7 @@
         - /data/ergo/.ergo
       tags:
         - removedata
+        - skip_ansible_lint
 
     - name: Check Ergo node is running
       shell: pgrep -f 'daemon -- java'
@@ -42,9 +45,11 @@
       changed_when: false
       tags:
         - checknet
+        - skip_ansible_lint
 
     - name: Check Ergo node is running - print results
       debug:
         msg: "{{ checknet.stdout_lines }}"
       tags:
         - checknet
+        - skip_ansible_lint
