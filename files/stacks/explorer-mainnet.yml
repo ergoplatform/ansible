@@ -3,7 +3,7 @@ version: '3.7'
 services:
 
   postgres:
-    image: postgres:10-alpine
+    image: postgres:11-alpine
     volumes:
       - /data/postgres:/var/lib/postgresql/data:rw
     networks:

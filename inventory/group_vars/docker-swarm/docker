@@ -45,7 +45,7 @@ docker:
           37613365646566393664336435653262633338333835363038623838663962353934
 
 
-      # PostgreSQL passwords
+      # Testnet PostgreSQL passwords
       postgres-at-postgres:
         data: !vault |
           $ANSIBLE_VAULT;1.1;AES256
@@ -64,6 +64,13 @@ docker:
           3831373734333430310a313734663262326235633534656137373635383535666637393265313662
           35376366616639643730373365326438306533353138343038333331626664303737
 
+
+      # Mainnet PostgreSQL passwords
+      postgres-at-postgres-mainnet:
+        data: !vault |
+
+      ergo-at-postgres-mainnet:
+        data: !vault |
 
       # Other passwords
       admin-at-portainer:

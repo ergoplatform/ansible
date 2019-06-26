@@ -6,6 +6,10 @@ explorer-mainnet ansible_host=167.71.14.34
 [mainnet]
 explorer-mainnet
 
+[nginx]
+swarm01
+explorer-mainnet
+
 [docker]
 it-tests
 test-explorer ansible_host=142.93.40.144
