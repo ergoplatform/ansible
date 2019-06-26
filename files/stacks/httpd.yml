@@ -9,6 +9,11 @@ services:
         published: 80
         protocol: tcp
         mode: host
+      # port 5000 would be closed after mainnet launch
+      - target: 5000
+        published: 5000
+        protocol: tcp
+        mode: host
       - target: 443
         published: 443
         protocol: tcp

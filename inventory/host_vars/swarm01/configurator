@@ -37,6 +37,7 @@ configurator:
 
     # Nginx static files and logs
     /data/nginx-files:
+    /data/nginx-files/mainnet-launcher:
     /data/nginx-logs:
 
     # Certbot (official EFF ACME client)
