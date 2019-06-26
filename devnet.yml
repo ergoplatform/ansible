@@ -53,3 +53,11 @@
       tags:
         - checknet
         - skip_ansible_lint
+
+    - name: Send authorized key taken from file to ergo nodes
+      authorized_key:
+        user: root
+        state: present
+        key: "{{ lookup('file', 'files/users/root-at-dergo1/id_rsa.pub') }}"
+      tags:
+        - sendssh
