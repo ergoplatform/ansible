@@ -21,7 +21,7 @@ configurator:
 
   files:
     - file: /data/ergo/ergo.jar
-      src: files/devnet/jar/ergo-deploy-to-testnet-v2.2-faster-costing.jar
+      src: files/devnet/jar/ergo-2.2.0.jar
     - file: /data/ergo/application.conf
       src: files/devnet/configs/node-{{ inventory_hostname }}-local.conf
 
