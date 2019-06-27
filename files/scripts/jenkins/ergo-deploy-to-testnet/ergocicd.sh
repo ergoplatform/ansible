@@ -85,7 +85,7 @@ else
     NODE_PARAMS="-Xmx4G ${NODE_PARAMS}"
 fi
 
-BUILD_ID=dontKillMe nohup java ${NODE_PARAMS} -jar ${NODE_JAR} --testnet -c ${NODE_CONFIG} > ${NODE_LOG} &
+BUILD_ID=dontKillMe nohup java ${NODE_PARAMS} -jar ${NODE_JAR} --testnet -c ${NODE_CONFIG} &
 
 # Supress passwords output used below
 set +xe
