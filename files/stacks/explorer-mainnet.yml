@@ -22,12 +22,12 @@ services:
     environment:
       DB_URL: jdbc:postgresql://postgres:5432/explorer
       DB_USER: ergo
-      DB_PASS_FILE: /run/secrets/ergo-at-postgres-explorer-mainnet
+      DB_PASS_FILE: /run/secrets/ergo-at-postgres-mainnet
     networks:
       - postgres
       - nginx
     secrets:
-      - ergo-at-postgres-explorer-mainnet
+      - ergo-at-postgres-mainnet
     deploy:
       placement:
         constraints:
@@ -51,7 +51,7 @@ networks:
   postgres:
 
 secrets:
-  ergo-at-postgres-explorer-mainnet:
+  ergo-at-postgres-mainnet:
     external: true
   postgres-at-postgres-mainnet:
     external: true
