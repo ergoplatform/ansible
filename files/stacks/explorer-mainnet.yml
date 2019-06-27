@@ -20,7 +20,7 @@ services:
   back:
     image: ergoplatform/explorer-back
     environment:
-      DB_URL: jdbc:postgresql://postgres:5432/explorer
+      DB_URL: jdbc:postgresql://explorer-mainnet_postgres:5432/explorer
       DB_USER: ergo
       DB_PASS_FILE: /run/secrets/ergo-at-postgres-mainnet
     networks:
