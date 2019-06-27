@@ -18,6 +18,7 @@ services:
     image: adminer:4-standalone
     networks:
       - postgres
+      - postgres-mainnet
       - nginx
 
   dockerhub-webhooks:
@@ -43,3 +44,6 @@ networks:
   postgres:
     external: true
     name: explorer_postgres
+  postgres-mainnet:
+    external: true
+    name: explorer-mainnet_postgres
