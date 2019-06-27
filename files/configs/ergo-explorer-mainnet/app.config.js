@@ -1,6 +1,5 @@
 var __APP_CONFIG__ = {
   apiUrl: 'https://api.ergoplatform.com',
-  alternativeLogo: true, // true by default
   environments: [
      {
        name: 'Mainnet',
@@ -10,7 +9,7 @@ var __APP_CONFIG__ = {
        name: 'Testnet',
        url: 'https://testnet.ergoplatform.com',
      },
-   ],
+  ],
 };
 
 if (typeof global !== 'undefined') {
