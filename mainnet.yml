@@ -15,7 +15,7 @@
 
   tasks:
     - name: Start Ergo as daemon
-      shell: daemon --chdir=/data/ergo -- java -Xmx3G -jar /data/ergo/ergo.jar --devnet -c /data/ergo/application.conf
+      shell: daemon --chdir=/data/ergo -- java -Xmx3G -jar /data/ergo/ergo.jar --mainnet -c /data/ergo/application.conf
       args:
         chdir: /data/ergo
       tags:
@@ -23,7 +23,7 @@
         - skip_ansible_lint
 
     - name: Stop Ergo daemon
-      shell: pkill -f 'daemon -- java'
+      shell: pkill -f 'daemon --chdir=/data/ergo -- java'
       tags:
         - stopnet
         - skip_ansible_lint
@@ -34,7 +34,9 @@
         path: "{{ item }}"
       with_items:
         - /.ergo
+        - /ergo.log
         - /data/ergo/.ergo
+        - /data/ergo/ergo.log
       tags:
         - removedata
         - skip_ansible_lint

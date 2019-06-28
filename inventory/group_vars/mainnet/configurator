@@ -19,9 +19,9 @@ configurator:
     /data:
     /data/ergo:
 
-#  files:
-#    - file: /data/ergo/ergo.jar
-#      src: files/devnet/jar/ergo-2.2.0.jar
+  files:
+    - file: /data/ergo/ergo.jar
+      src: files/devnet/jar/ergo-3.0.0.jar
 
   templates:
     ergo-node-config:
