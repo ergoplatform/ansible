@@ -1,0 +1,10 @@
+---
+
+preconf:
+  package_sets:
+    daemon:
+      - daemon
+
+  package_sets_install:
+    - openjdk-r
+    - daemon

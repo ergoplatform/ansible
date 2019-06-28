@@ -1,0 +1,29 @@
+---
+
+configurator:
+
+  default:
+    directory:
+      mode: 755
+      owner: root
+      group: root
+      state: directory
+    file:
+      mode: 644
+      owner: root
+      group: root
+
+  fulldirs: {}
+
+  directories:
+    /data:
+    /data/ergo:
+
+#  files:
+#    - file: /data/ergo/ergo.jar
+#      src: files/devnet/jar/ergo-2.2.0.jar
+
+  templates:
+    ergo-node-config:
+      src: files/configs/ergo-mainnet/application.conf.j2
+      dest: /data/ergo/application.conf
