@@ -2,13 +2,13 @@ var __APP_CONFIG__ = {
   apiUrl: 'https://api-testnet.ergoplatform.com',
   alternativeLogo: true, // true by default
   environments: [
-//     {
-//       name: 'Mainnet',
-//       url: 'https://ergoplatform.com',
-//     },
      {
        name: 'Testnet',
        url: 'https://testnet.ergoplatform.com',
+     },
+     {
+       name: 'Mainnet',
+       url: 'https://explorer.ergoplatform.com',
      },
    ],
 };
