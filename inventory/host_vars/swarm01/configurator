@@ -98,3 +98,7 @@ configurator:
     monitoring-devnet:
       src: files/stacks/monitoring-devnet.yml.j2
       dest: /data/configs_rendered/monitoring-devnet.yml
+
+    monitoring-mainnet:
+      src: files/stacks/monitoring-mainnet.yml.j2
+      dest: /data/configs_rendered/monitoring-mainnet.yml

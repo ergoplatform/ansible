@@ -200,6 +200,15 @@ services:
     networks:
       - influxdb
 
+  node-info-monitor-93-123-180-164-mainnet:
+    image: ergoplatform/node-info-monitor
+    environment:
+      MONITORING_NODE_URL: "http://93.123.180.164:9053"
+    secrets:
+      - testnet-at-influxdb
+    networks:
+      - influxdb
+
   node-info-monitor-157-230-226-72:
     image: ergoplatform/node-info-monitor
     environment:
