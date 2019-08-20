@@ -6,8 +6,8 @@ configurator:
 
     # Copy Ergo config file
     - file: /data/ergo/application.conf
-      src: files/configs/ergo-testnet2/{{ inventory_hostname }}.conf
+      src: files/configs/ergo-testnet/{{ inventory_hostname }}.conf
 
 #    # copy local assembled jar-file to remote node
 #    - file: /data/ergo/ergo.jar
-#      src: /home/andyceo/workspace/ergoplatform-ergo/target/scala-2.12/ergo-assembly-1.9.0-SNAPSHOT.jar
+#      src: files/devnet/jar/ergo-3.0.7.jar

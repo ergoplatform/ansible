@@ -3,6 +3,6 @@
 preconf:
   hostname:
     apply: yes
-    hostname: testnet2-mine1-199
-    fqdn: testnet2-mine1-199
+    hostname: testnet-mine1-199
+    fqdn: testnet-mine1-199
     ipv4: 127.0.1.1
