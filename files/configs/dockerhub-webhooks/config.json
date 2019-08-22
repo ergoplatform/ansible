@@ -7,6 +7,14 @@
     "ergoplatform/explorer-back:latest": {
       "stack": "explorer",
       "filepath": "/data/stacks/explorer.yml"
+    },
+    "ergoplatform/ergo-explorer:mainnet": {
+      "stack": "explorer-mainnet",
+      "filepath": "/data/stacks/explorer-mainnet.yml"
+    },
+    "ergoplatform/explorer-back:mainnet": {
+      "stack": "explorer-mainnet",
+      "filepath": "/data/stacks/explorer-mainnet.yml"
     }
   },
 
