@@ -173,15 +173,6 @@ services:
     networks:
       - influxdb
 
-  node-info-monitor-78-46-93-239-19052:
-    image: ergoplatform/node-info-monitor
-    environment:
-      MONITORING_NODE_URL: "http://78.46.93.239:19052"
-    secrets:
-      - testnet-at-influxdb
-    networks:
-      - influxdb
-
   node-info-monitor-178-128-162-150:
     image: ergoplatform/node-info-monitor
     environment:
