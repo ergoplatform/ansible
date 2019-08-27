@@ -11,7 +11,7 @@ NODE_LOG_PRESERVE=${NODE_BASE_DIR}/${NODE_LOG_PRESERVE_FILENAME_BASE}${BUILD_ID}
 MAXLOGS=10
 NODE_PARAMS="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/java_build_id${BUILD_ID}.hprof"
 NODE_DATA_DIR=${NODE_BASE_DIR}/data
-TOTAL_MEMORY_KB=$(awk '/MemTotal/ { printf "%.0f", $2 }' /proc/meminfo)
+NODE_MEMORY_XMX=$(awk '/MemTotal/ { printf "%.0f", $2*0.9 }' /proc/meminfo)
 PIDS=$(pgrep -f "ergo.*\.jar")
 FOUND=$?
 WIPEDATA=${WIPEDATA:-false}
@@ -83,7 +83,7 @@ cp -pf $(find . -type f -name ${JARFILE_TO_SEEK}) ${NODE_JAR}
 if [ "$(hostname)" = 'testnet1-light-ubuntu-s-1vcpu-2gb-lon1-01' ]; then
     NODE_PARAMS="-Xmx2G ${NODE_PARAMS}"
 else
-    NODE_PARAMS="-Xmx${TOTAL_MEMORY_KB}K ${NODE_PARAMS}"
+    NODE_PARAMS="-Xmx${NODE_MEMORY_XMX}K ${NODE_PARAMS}"
 fi
 
 BUILD_ID=dontKillMe nohup java ${NODE_PARAMS} -jar ${NODE_JAR} --testnet -c ${NODE_CONFIG} &
