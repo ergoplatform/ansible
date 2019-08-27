@@ -7,8 +7,8 @@ explorer-mainnet ansible_host=167.71.14.34
 m1 ansible_host=139.59.29.87
 m2 ansible_host=159.65.11.55
 m3 ansible_host=165.227.26.175
-m4 ansible_host=138.68.98.248
-m5 ansible_host=159.89.116.15
+frankfurt ansible_host=138.68.98.248
+toronto ansible_host=159.89.116.15
 
 [nginx]
 swarm01
@@ -39,6 +39,7 @@ karella ansible_connection=local
 
 [ergonodes:children]
 testnet
+mainnet
 
 [servers:children]
 docker-swarm

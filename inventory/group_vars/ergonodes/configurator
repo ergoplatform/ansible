@@ -11,7 +11,7 @@ configurator:
     /data/ergo:
 
     # remove old blockchain data
-    /data/ergo/data:
+    #/data/ergo/.ergo:
     #  state: absent
 
   templates:
