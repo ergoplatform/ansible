@@ -19,6 +19,24 @@ services:
 
 {% endfor %}
 
+  mainnet-88-198-13-202:
+    image: ergoplatform/node-info-monitor
+    environment:
+      MONITORING_NODE_URL: "http://88.198.13.202:9053"
+    secrets:
+      - testnet-at-influxdb
+    networks:
+      - influxdb
+
+  mainnet-93-123-180-164:
+    image: ergoplatform/node-info-monitor
+    environment:
+      MONITORING_NODE_URL: "http://93.123.180.164:9053"
+    secrets:
+      - testnet-at-influxdb
+    networks:
+      - influxdb
+
 networks:
   influxdb:
     external: true
