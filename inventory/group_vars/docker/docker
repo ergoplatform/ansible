@@ -1,5 +1,7 @@
 ---
 docker:
   config:
-    pin_docker_engine_to_version: 5:18.09.4~3-0~ubuntu-{{ ansible_distribution_release }}
-    pin_docker_cli_to_version: 5:18.09.4~3-0~ubuntu-{{ ansible_distribution_release }}
+    pin_docker_engine_to_version: 5:19.03.2~3-0~ubuntu-{{ ansible_distribution_release }}
+    pin_docker_cli_to_version: 5:19.03.2~3-0~ubuntu-{{ ansible_distribution_release }}
+  containers: []
+  networks: []
