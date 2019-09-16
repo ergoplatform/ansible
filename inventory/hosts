@@ -3,6 +3,10 @@ swarm01 ansible_host=188.166.109.25
 explorer ansible_host=167.99.44.242
 explorer-mainnet ansible_host=167.71.14.34
 
+[explorers]
+explorer
+explorer-mainnet
+
 [mainnet]
 bangalore ansible_host=139.59.29.87
 singapore ansible_host=159.65.11.55
