@@ -22,5 +22,7 @@
     "andyceo/dockerhub-webhooks:latest": {
       "service": "infrastructure_dockerhub-webhooks"
     }
-  }
+  },
+
+  "intervals": []
 }
