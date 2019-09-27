@@ -26,6 +26,11 @@ Execute playbook `servers.yml`:
     ansible-playbook servers.yml
 
 
+## Documentation
+
+See [`docs`](docs) directory and [Ergoplatform Infrastructure Overview](docs/Infrastructure-Overview.md) for quick introduction.
+
+
 ## Services
 
 - [Jenkins](https://jenkins.ergoplatform.com/) - CI system
