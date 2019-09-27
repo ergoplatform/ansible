@@ -30,6 +30,8 @@ Execute playbook `servers.yml`:
 
 See [`docs`](docs) directory and [Ergoplatform Infrastructure Overview](docs/Infrastructure-Overview.md) for quick introduction.
 
+Use [FAQ](docs/Infrastructure-FAQ.md) for asking questions and receiving answers and updated documentation.
+
 
 ## Services
 
