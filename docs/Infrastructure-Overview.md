@@ -24,7 +24,7 @@ The information specific for hosts are placed in `inventory/host_vars` directory
 
 Directories and files structure in this repository is typical for Ansible repos (see [Ansible Best Practices](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html)), excluding `/docs` and `/files`. Here is little intro:
 
--`/docs` used for documentation like this one
+- `/docs` used for documentation like this one
 
 - `/files` contains arbitrary files like software configuration, Docker Swarm stacks definitions, some scripts and other important stuff.
 
