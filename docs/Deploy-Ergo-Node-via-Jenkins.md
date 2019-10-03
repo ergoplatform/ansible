@@ -25,7 +25,7 @@ They are pretty similar and may be merged into one script to reduce maintenance 
 
 ### Mainnet nodes files location
 
-According to [Mainnet deploy script](../files/scripts/jenkins/ergo-deploy-to-mainnet/ergocicd.sh), files placed under `/data/ergo` directory:
+According to [Mainnet deploy script](../files/scripts/jenkins/ergo-deploy-to-mainnet/ergocicd.sh), files are placed under `/data/ergo` directory:
 
 - node .jar file: `/data/ergo/ergo.jar`
 - node data dir:  `/data/ergo/.ergo`
