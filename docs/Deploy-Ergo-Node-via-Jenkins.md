@@ -35,7 +35,7 @@ According to [Mainnet deploy script](../files/scripts/jenkins/ergo-deploy-to-mai
 
 ### Testnet nodes files location
 
-According to [Testnet deploy script](../files/scripts/jenkins/ergo-deploy-to-testnet/ergocicd.sh), files placed under `/data/ergo` directory:
+According to [Testnet deploy script](../files/scripts/jenkins/ergo-deploy-to-testnet/ergocicd.sh), files are placed under `/data/ergo` directory:
 
 - node .jar file: `/data/ergo/ergo.jar`
 - node data dir:  `/data/ergo/data`
