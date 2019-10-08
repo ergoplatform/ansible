@@ -15,7 +15,7 @@ Ergoplatform infrastructure build upon **Digital Ocean** virtual machines. Creat
 
 All mentioned above virtual machines has an IP address and SSH installed, and managed manually (rear case), via Jenkins (sometimes) and via [Ansible](https://docs.ansible.com/ansible/latest/index.html) (usual). In fact, that repository is following [Ansible Best Practices](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html) guidelines as that would be shown later.
 
-The actual hosts list is in [Ansible inventory file](inventory/hosts). Please refer to it for any host IP, host group and name information.
+The actual hosts list is in [Ansible inventory file](../inventory/hosts). Please refer to it for any host IP, host group and name information.
 
 The information specific for hosts are placed in `inventory/host_vars` directory, specific for host groups in `inventory/group_vars`. Variables from groups and hosts are merged for specific host.
 
@@ -36,7 +36,7 @@ Directories and files structure in this repository is typical for Ansible repos 
 
 ### Docker Swarm cluster
 
-There is Docker Swarm cluster on some nodes (see `docker-swarm` host group in [inventory](inventory/hosts)). Docker Swarm hosts any software, needed for crew and community, like Nginx, Jenkins, Grafana and so on.
+There is Docker Swarm cluster on some nodes (see `docker-swarm` host group in [inventory](../inventory/hosts)). Docker Swarm hosts any software, needed for crew and community, like Nginx, Jenkins, Grafana and so on.
 
 
 
