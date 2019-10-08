@@ -20,6 +20,7 @@ Install git submodules:
     git submodule add git@github.com:andyceo/ansible-role-telegraf.git roles/andyceo.telegraf
     git submodule add git@github.com:andyceo/ansible-role-mailutils.git roles/andyceo.mailutils
     git submodule add git@github.com:andyceo/ansible-role-git.git roles/andyceo.git
+    git submodule add git@github.com:andyceo/bash_scripts.git files/3dparty/bash_scripts
 
 Execute playbook `servers.yml`:
 

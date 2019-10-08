@@ -22,3 +22,6 @@
 [submodule "roles/andyceo.git"]
 	path = roles/andyceo.git
 	url = git@github.com:andyceo/ansible-role-git.git
+[submodule "files/3dparty/bash_scripts"]
+	path = files/3dparty/bash_scripts
+	url = git@github.com:andyceo/bash_scripts.git

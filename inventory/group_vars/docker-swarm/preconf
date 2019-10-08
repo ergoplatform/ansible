@@ -1,0 +1,11 @@
+---
+
+preconf:
+  crons:
+    docker-service-exec-nginx-configs-reload:
+      state: present
+      minute: 45
+      user: root
+      job: "/usr/local/bin/docker-service-exec.sh httpd_nginx 'nginx -s reload' >>
+            /data/logs/docker-service-exec/docker-service-exec-{{ inventory_hostname }}.log 2>&1"
+      cron_file: docker-service-exec-nginx-configs-reload

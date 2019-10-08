@@ -14,11 +14,31 @@ configurator:
     /data:
     /data/configs_rendered:
     /data/logs:
+    /data/logs/docker-service-exec:
 
   templates:
+
     kapacitor:
       src: files/configs/kapacitor/kapacitor.conf.j2
       dest: /data/configs_rendered/kapacitor.conf
+
+    telegraf:
+      src: files/configs/telegraf/servers.conf.j2
+      dest: /etc/telegraf/telegraf.conf
+      notify: telegraf-restart
+
     telegraf-inswarm:
       src: files/configs/telegraf/inswarm.conf.j2
       dest: /data/configs_rendered/inswarm.conf
+
+    # @todo switch to 'files' when files will be dictionary
+    rsyncdir:
+      src: files/3dparty/bash_scripts/rsyncdir/rsyncdir.sh
+      dest: /usr/local/bin/rsyncdir.sh
+      mode: 755
+
+    # @todo switch to 'files' when files will be dictionary
+    docker-service-exec:
+      src: files/3dparty/bash_scripts/docker-service-exec/docker-service-exec.sh
+      dest: /usr/local/bin/docker-service-exec.sh
+      mode: 755
