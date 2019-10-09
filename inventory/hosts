@@ -19,8 +19,7 @@ swarm01
 explorer-mainnet
 
 [docker]
-it-tests
-test-explorer ansible_host=142.93.40.144
+it-tests ansible_host=159.65.117.238
 
 [docker:children]
 docker-swarm
