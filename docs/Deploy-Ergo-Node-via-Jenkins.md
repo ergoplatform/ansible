@@ -10,6 +10,7 @@ This manual describes how you can deploy specific build of Ergo node to Testnet 
 - There is no automatic deploy to Mainnet of any kind
 - You should manually follow instructions below to deploy to Mainnet, as to deploy specific (not `master`) branch to Testnet
 - You can not deploy builds older than 60 days
+- You can not deploy builds that has unfinished [Integration tests](https://jenkins.ergoplatform.com/job/ergo-it/) jobs
 - [Integration tests](https://jenkins.ergoplatform.com/job/ergo-it/) must be successfully done for deploying build, at least, `sbt` compilation must ended up successfully. But it is strongly recommended never deploy failed builds
 - Passing of configuration files to deploy is not supported now. Because of this, all nodes in Mainnet and Testnet has as general configs as possible. Configs files are placed under [files/configs/ergo-testnet](../files/configs/ergo-testnet) for Testnet and config file template [files/configs/ergo-mainnet](../files/configs/ergo-mainnet/application.conf.j2) for Mainnet and periodically updated via Ansible. Feel free to [create issue](https://github.com/ergoplatform/ansible/issues/new) to add the ability to pass configs with deploys
 
