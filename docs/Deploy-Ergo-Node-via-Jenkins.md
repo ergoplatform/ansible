@@ -45,7 +45,7 @@ According to [Testnet deploy script](../files/scripts/jenkins/ergo-deploy-to-tes
 
 
 ## Manual
-
+0. Make sure that `ergo-it` job is finished succesfully, since a deployment build is produced by `ergo-it`.
 1. Click on [ergo-deploy-to-mainnet build button](https://jenkins.ergoplatform.com/job/ergo-deploy-to-mainnet/build?delay=0sec) to start deploying Ergo node to Mainnet (or click on [ergo-deploy-to-testnet build button](https://jenkins.ergoplatform.com/job/ergo-deploy-to-testnet/build?delay=0sec) to deploy to Testnet)
 
 2. You will see build parameters form with 3 fields:
