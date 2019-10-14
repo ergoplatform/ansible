@@ -45,7 +45,9 @@ According to [Testnet deploy script](../files/scripts/jenkins/ergo-deploy-to-tes
 
 
 ## Manual
+
 0. Make sure that `ergo-it` job is finished succesfully, since a deployment build is produced by `ergo-it`.
+
 1. Click on [ergo-deploy-to-mainnet build button](https://jenkins.ergoplatform.com/job/ergo-deploy-to-mainnet/build?delay=0sec) to start deploying Ergo node to Mainnet (or click on [ergo-deploy-to-testnet build button](https://jenkins.ergoplatform.com/job/ergo-deploy-to-testnet/build?delay=0sec) to deploy to Testnet)
 
 2. You will see build parameters form with 3 fields:
@@ -62,3 +64,15 @@ That's all! You also can:
 
 - Track the deploy logs as usual Jenkins job logs with Jenkins job **Build history**.
 - Track and monitor build behaviour with Grafana: [Mainnet](https://grafana.ergoplatform.com/d/OwXtQiNZz) or [Testnet](https://grafana.ergoplatform.com/d/000000001)
+- Track Ergo node logs on chosen host: ssh on it (see [inventory](../inventory/hosts) for IP and ask admins for credentials), then use `tail`. Example for Mainnet: `tail -f /data/ergo/ergo.log`)
+
+
+## Troubleshooting
+
+> The deployment CI job always gets the latest available build from specified branch, right?
+
+Right. So be attentive, if you run deploy before ergo-it is finished, it may deploy unexpected build (or can not deploy at all, since there are no builds yet). On the other hand, you may want deploy outdated build and see results, when next build is under testing, and you have that ability.
+
+> If I update my ergo branch and run ergo-it job and after that run deploy it’ll pick up the the last build, correct?
+
+Absolutely correct. When ergo-it job finished (and at least compilation phase was succesfull), the last build of specific branch is the result of finished ergo-it job of specific branch, and exactly that version be deployed on next deploy for specific branch.
