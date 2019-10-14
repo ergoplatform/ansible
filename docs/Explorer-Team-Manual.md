@@ -41,8 +41,8 @@ In case of any problems with explorers, you can try following:
 
 1. ssh on `explorer` or `explorer-mainnet` with your credentials (reference with [hosts inventory](../inventory/host) for hosts IP, [explorers hozts users](../inventory/group_vars/explorers/users) for credentials)
 
-2. Execute `docker container ps -a` to see which containers is executed now and which are exited. You can visually figure out container of your interest and find its `<CONTAINER_ID>`
+2. Execute `sudo docker container ps -a` to see which containers is executed now and which are exited. You can visually figure out container of your interest and find its `<CONTAINER_ID>`
 
-3. Execute `docker container logs -f --tail 100 <CONTAINER_ID>` to see container's logs. Choose `CONTAINER_ID` from previous step
+3. Execute `sudo docker container logs -f --tail 100 <CONTAINER_ID>` to see container's logs. Choose `CONTAINER_ID` from previous step
 
-4, Execute `docker container stop <CONTAINER_ID>` to stop stucked container. Docker Swarm automatically start another container to fits stack definition needs. Container you stopped remains and you can explore its logs later
+4, Execute `sudo docker container stop <CONTAINER_ID>` to stop stucked container. Docker Swarm automatically start another container to fits stack definition needs. Container you stopped remains and you can explore its logs later
