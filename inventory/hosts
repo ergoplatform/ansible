@@ -28,6 +28,10 @@ docker-swarm
 it-tests
 test-explorer
 
+[jenkins-builders]
+it-tests
+frankfurt
+
 [testnet]
 testnet-mine1-210 ansible_host=209.97.134.210
 testnet-light-204 ansible_host=209.97.136.204

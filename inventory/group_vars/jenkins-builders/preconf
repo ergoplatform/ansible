@@ -1,0 +1,26 @@
+---
+
+preconf:
+
+  apt_keys:
+    openjdk-r:
+      state: present
+    sbt:
+      state: present
+
+  repositories:
+    openjdk-r:
+      state: present
+    openjdk-r_src:
+      state: present
+    sbt:
+      state: present
+
+  package_sets:
+    sbt:
+      - sbt
+
+  package_sets_install:
+    - common
+    - openjdk-r
+    - sbt
