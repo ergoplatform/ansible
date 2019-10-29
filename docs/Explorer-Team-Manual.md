@@ -32,14 +32,14 @@ Autodeploy configuration placed [here](../files/configs/dockerhub-webhooks/confi
 
 Testnet autodeploy happens on any push event in mentioned projects `master` branch. Github send push event to [Docker Hub](https://hub.docker.com/), when Docker Hub builds new project image, it sends webhook to our autodeploy facility, and autodeploy execute `docker stack deploy -c explorer.yml explorer` for Testnet.
 
-Mainnet autodeploy happens on any push event in `mainnet` branch of mentioned projects, and deploys with `docker stack deploy -c explorer-mainnet explorer-mainnet` command.
+Mainnet autodeploy happens on any push event in `mainnet` branch of mentioned projects, and deploys with `docker stack deploy -c explorer-mainnet.yml explorer-mainnet` command.
 
 
 ## Troubleshooting
 
 In case of any problems with explorers, you can try following:
 
-1. ssh on `explorer` or `explorer-mainnet` with your credentials (reference with [hosts inventory](../inventory/host) for hosts IP, [explorers hozts users](../inventory/group_vars/explorers/users) for credentials)
+1. ssh on `explorer` or `explorer-mainnet` with your credentials (reference with [hosts inventory](../inventory/hosts) for hosts IP, [explorers hosts users](../inventory/group_vars/explorers/users) for credentials)
 
 2. Execute `sudo docker container ps -a` to see which containers is executed now and which are exited. You can visually figure out container of your interest and find its `<CONTAINER_ID>`
 
