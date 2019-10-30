@@ -6,3 +6,10 @@ preconf:
     hostname: "{{ inventory_hostname }}"
     fqdn: "{{ inventory_hostname }}.ergoplatform.com"
     ipv4: 127.0.1.1
+
+  package_sets:
+    daemon:
+      - daemon
+
+  package_sets_install:
+    - daemon
