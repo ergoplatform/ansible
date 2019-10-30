@@ -35,7 +35,6 @@ frankfurt
 [testnet]
 testnet-mine1-210 ansible_host=209.97.134.210
 testnet-light-204 ansible_host=209.97.136.204
-testnet-mine1-199 ansible_host=159.65.139.199
 testnet-mine1-185 ansible_host=206.189.130.185
 testnet-mine1-162 ansible_host=159.203.36.162
 

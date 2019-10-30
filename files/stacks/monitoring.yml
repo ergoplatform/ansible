@@ -110,15 +110,6 @@ services:
     networks:
       - influxdb
 
-  node-info-monitor-testnet2-mine1-199:
-    image: ergoplatform/node-info-monitor
-    environment:
-      MONITORING_NODE_URL: "http://159.65.139.199:9052"
-    secrets:
-      - testnet-at-influxdb
-    networks:
-      - influxdb
-
   node-info-monitor-testnet2-mine1-185:
     image: ergoplatform/node-info-monitor
     environment:
