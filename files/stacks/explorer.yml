@@ -4,10 +4,14 @@ services:
 
   postgres:
     image: postgres:10-alpine
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres-at-postgres
     volumes:
       - postgres:/var/lib/postgresql/data:rw
     networks:
       - postgres
+    secrets:
+      - postgres-at-postgres
     deploy:
       placement:
         constraints:
@@ -50,5 +54,7 @@ volumes:
   postgres:
 
 secrets:
+  postgres-at-postgres:
+    external: true
   ergo-at-postgres:
     external: true
