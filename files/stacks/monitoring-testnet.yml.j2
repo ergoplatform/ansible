@@ -2,12 +2,12 @@ version: '3.7'
 
 services:
 
-{% for host in groups['mainnet'] %}
+{% for host in groups['testnet'] %}
 
   {{ hostvars[host]['inventory_hostname'] }}_ip-{{ hostvars[host]['ansible_host'] | replace('.', '-') }}:
     image: ergoplatform/node-info-monitor
     environment:
-      MONITORING_NODE_URL: "http://{{ hostvars[host]['ansible_host'] }}:9053"
+      MONITORING_NODE_URL: "http://{{ hostvars[host]['ansible_host'] }}:9052"
     secrets:
       - testnet-at-influxdb
     networks:
@@ -22,7 +22,7 @@ services:
   93-123-180-164:
     image: ergoplatform/node-info-monitor
     environment:
-      MONITORING_NODE_URL: "http://93.123.180.164:9053"
+      MONITORING_NODE_URL: "http://93.123.180.164:9052"
     secrets:
       - testnet-at-influxdb
     networks:
@@ -31,7 +31,16 @@ services:
   88-198-13-202:
     image: ergoplatform/node-info-monitor
     environment:
-      MONITORING_NODE_URL: "http://88.198.13.202:9053"
+      MONITORING_NODE_URL: "http://88.198.13.202:9052"
+    secrets:
+      - testnet-at-influxdb
+    networks:
+      - influxdb
+
+  78-46-93-239:
+    image: ergoplatform/node-info-monitor
+    environment:
+      MONITORING_NODE_URL: "http://78.46.93.239:9052"
     secrets:
       - testnet-at-influxdb
     networks:

@@ -30,7 +30,7 @@ services:
           - node.hostname == swarm01
 
   grafana:
-    image: grafana/grafana:6.3.5
+    image: grafana/grafana:6.4.3
     networks:
       - nginx
       - influxdb
@@ -91,106 +91,6 @@ services:
         constraints:
           - node.hostname == swarm01
 
-
-  node-info-monitor-209-97-134-210-mine2:
-    image: ergoplatform/node-info-monitor
-    environment:
-      MONITORING_NODE_URL: "http://209.97.134.210:9052"
-    secrets:
-      - testnet-at-influxdb
-    networks:
-      - influxdb
-
-  node-info-monitor-209-97-136-204-light:
-    image: ergoplatform/node-info-monitor
-    environment:
-      MONITORING_NODE_URL: "http://209.97.136.204:9052"
-    secrets:
-      - testnet-at-influxdb
-    networks:
-      - influxdb
-
-  node-info-monitor-testnet2-mine1-185:
-    image: ergoplatform/node-info-monitor
-    environment:
-      MONITORING_NODE_URL: "http://206.189.130.185:9052"
-    secrets:
-      - testnet-at-influxdb
-    networks:
-      - influxdb
-
-  node-info-monitor-testnet2-mine1-162:
-    image: ergoplatform/node-info-monitor
-    environment:
-      MONITORING_NODE_URL: "http://159.203.36.162:9052"
-    secrets:
-      - testnet-at-influxdb
-    networks:
-      - influxdb
-
-  node-info-monitor-78-46-93-239:
-    image: ergoplatform/node-info-monitor
-    environment:
-      MONITORING_NODE_URL: "http://78.46.93.239:9052"
-    secrets:
-      - testnet-at-influxdb
-    networks:
-      - influxdb
-
-  node-info-monitor-88-198-13-202:
-    image: ergoplatform/node-info-monitor
-    environment:
-      MONITORING_NODE_URL: "http://88.198.13.202:9052"
-    secrets:
-      - testnet-at-influxdb
-    networks:
-      - influxdb
-
-  node-info-monitor-ergo-dsalab-de:
-    image: ergoplatform/node-info-monitor
-    environment:
-      MONITORING_NODE_URL: "http://ergo.dsalab.de:9051"
-    secrets:
-      - testnet-at-influxdb
-    networks:
-      - influxdb
-
-  node-aleksey:
-    image: ergoplatform/node-info-monitor
-    environment:
-      MONITORING_NODE_URL: "http://188.166.109.25:48890"
-    secrets:
-      - testnet-at-influxdb
-    networks:
-      - influxdb
-
-  node-info-monitor-178-128-162-150:
-    image: ergoplatform/node-info-monitor
-    environment:
-      MONITORING_NODE_URL: "http://178.128.162.150:9052"
-    secrets:
-      - testnet-at-influxdb
-    networks:
-      - influxdb
-
-  node-info-monitor-93-123-180-164:
-    image: ergoplatform/node-info-monitor
-    environment:
-      MONITORING_NODE_URL: "http://93.123.180.164:9052"
-    secrets:
-      - testnet-at-influxdb
-    networks:
-      - influxdb
-
-  node-info-monitor-157-230-226-72:
-    image: ergoplatform/node-info-monitor
-    environment:
-      MONITORING_NODE_URL: "http://157.230.226.72:9052"
-    secrets:
-      - testnet-at-influxdb
-    networks:
-      - influxdb
-
 networks:
   influxdb:
     external: true
@@ -204,6 +104,4 @@ networks:
 
 secrets:
   telegraf-at-influxdb:
-    external: true
-  testnet-at-influxdb:
     external: true
