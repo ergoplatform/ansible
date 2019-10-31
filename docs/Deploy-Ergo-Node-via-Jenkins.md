@@ -17,31 +17,17 @@ This manual describes how you can deploy specific build of Ergo node to Testnet 
 
 ## Deploy scripts and details
 
-Mainnet deploy script: [files/scripts/jenkins/ergo-deploy-to-mainnet/ergocicd.sh](../files/scripts/jenkins/ergo-deploy-to-mainnet/ergocicd.sh)
-
-Testnet deploy script: [files/scripts/jenkins/ergo-deploy-to-testnet/ergocicd.sh](../files/scripts/jenkins/ergo-deploy-to-testnet/ergocicd.sh)
-
-They are pretty similar and may be merged into one script to reduce maintenance and unify deploy process (feel free to [create issue](https://github.com/ergoplatform/ansible/issues/new) for that).
+Mainnet and Testnet deploy script use same script that located here: [files/scripts/jenkins/ergo-deploy-to-mainnet-or-testnet/ergocicd.sh](../files/scripts/jenkins/ergo-deploy-to-mainnet-or-testnet/ergocicd.sh)
 
 
-### Mainnet nodes files location
+## Ergo nodes files location
 
-According to [Mainnet deploy script](../files/scripts/jenkins/ergo-deploy-to-mainnet/ergocicd.sh), files are placed under `/data/ergo` directory:
+According to [Deploy script](../files/scripts/jenkins/ergo-deploy-to-mainnet-or-testnet/ergocicd.sh), files are placed under `/data/ergo` directory:
 
 - node .jar file: `/data/ergo/ergo.jar`
 - node data dir:  `/data/ergo/.ergo`
 - config file:    `/data/ergo/application.conf`
 - node log file:  `/data/ergo/ergo.log`
-
-
-### Testnet nodes files location
-
-According to [Testnet deploy script](../files/scripts/jenkins/ergo-deploy-to-testnet/ergocicd.sh), files are placed under `/data/ergo` directory:
-
-- node .jar file: `/data/ergo/ergo.jar`
-- node data dir:  `/data/ergo/data`
-- config file:    `/data/ergo/application.conf`
-- node log file:  `/root/workspace/ergo-deploy-to-testnet/ergo.log`
 
 
 ## Manual
@@ -64,15 +50,16 @@ That's all! You also can:
 
 - Track the deploy logs as usual Jenkins job logs with Jenkins job **Build history**.
 - Track and monitor build behaviour with Grafana: [Mainnet](https://grafana.ergoplatform.com/d/OwXtQiNZz) or [Testnet](https://grafana.ergoplatform.com/d/000000001)
-- Track Ergo node logs on chosen host: ssh on it (see [inventory](../inventory/hosts) for IP and ask admins for credentials), then use `tail`. Example for Mainnet: `tail -f /data/ergo/ergo.log`)
+- Track Ergo node logs on chosen host: ssh on it (see [inventory](../inventory/hosts) for IP and ask admins for credentials), then use `tail`. Example: `tail -f /data/ergo/ergo.log`)
+- Monitor hosts CPU load, memory consumption and other system parameters: [Overall hosts statistics](https://grafana.ergoplatform.com/d/M-Xtpr5mz/overall)
 
 
 ## Troubleshooting
 
 > The deployment CI job always gets the latest available build from specified branch, right?
 
-Right. So be attentive, if you run deploy before ergo-it is finished, it may deploy unexpected build (or can not deploy at all, since there are no builds yet). On the other hand, you may want deploy outdated build and see results, when next build is under testing, and you have that ability.
+Right. So be attentive, if you run deploy before `ergo-it` is finished, it may deploy unexpected (outdated) build (or can not deploy it at all, since there are no builds yet). On the other hand, you may want deploy outdated build and see results, when next build is under testing, and you have that ability.
 
 > If I update my ergo branch and run ergo-it job and after that run deploy it’ll pick up the the last build, correct?
 
-Absolutely correct. When ergo-it job finished (and at least compilation phase was succesfull), the last build of specific branch is the result of finished ergo-it job of specific branch, and exactly that version be deployed on next deploy for specific branch.
+Absolutely correct. When `ergo-it` job finished (and at least compilation phase of the job was succesfull), the last build of specific branch is the result of finished `ergo-it` job of specific branch, and exactly that version be deployed on next deploy for specific branch.

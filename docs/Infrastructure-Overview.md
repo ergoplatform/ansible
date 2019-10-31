@@ -17,7 +17,9 @@ All mentioned above virtual machines has an IP address and SSH installed, and ma
 
 The actual hosts list is in [Ansible inventory file](../inventory/hosts). Please refer to it for any host IP, host group and name information.
 
-The information specific for hosts are placed in `inventory/host_vars` directory, specific for host groups in `inventory/group_vars`. Variables from groups and hosts are merged for specific host.
+The information specific for hosts are placed in `inventory/host_vars` directory, specific for host groups in `inventory/group_vars`. Variables from groups and hosts are merged together for specific host.
+
+You can monitor hosts CPU load, memory consumption and other system parameters: [Overall hosts statistics](https://grafana.ergoplatform.com/d/M-Xtpr5mz/overall)
 
 
 ### Repository structure
@@ -39,7 +41,23 @@ Directories and files structure in this repository is typical for Ansible repos 
 There is Docker Swarm cluster on some nodes (see `docker-swarm` host group in [inventory](../inventory/hosts)). Docker Swarm hosts any software, needed for crew and community, like Nginx, Jenkins, Grafana and so on.
 
 
-
 ### Jenkins and CI/CD
 
 Mainnet and Testnet hosts are added to Jenkins and new Ergo node builds automatically and manually deployed on that nodes to corresponding networks.
+
+
+### Monitoring
+
+The [InfluxDB](https://github.com/influxdata/influxdb) used to store monitoring parameters and statistics.
+
+[Telegraf](https://github.com/influxdata/telegraf) is used to grab metrics from hosts and services and deliver them into InfluxDB.
+
+[Kapacitor](https://github.com/influxdata/kapacitor) is used to analyze metrics and produce alerting.
+
+[node-info-monitor](https://github.com/ergoplatform/node-info-monitor) tool used to grab metrics from Ergo nodes and deliver them into InfluxDB. 
+
+[Grafana](https://github.com/grafana/grafana) is used as monitoring frontend. There are some monitoring dashboards in Grafana:
+
+- [Overall hosts statistics](https://grafana.ergoplatform.com/d/M-Xtpr5mz/overall)
+- [Mainnet](https://grafana.ergoplatform.com/d/OwXtQiNZz)
+- [Testnet](https://grafana.ergoplatform.com/d/000000001)
