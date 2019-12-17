@@ -18,7 +18,7 @@ services:
           - node.hostname == explorer-mainnet
 
   back:
-    image: ergoplatform/explorer-back
+    image: ergoplatform/explorer-back:mainnet
     environment:
       DB_URL: jdbc:postgresql://explorer-mainnet_postgres:5432/explorer
       DB_USER: ergo
@@ -43,7 +43,7 @@ services:
           - node.hostname == explorer-mainnet
 
   front:
-    image: ergoplatform/ergo-explorer
+    image: ergoplatform/ergo-explorer:mainnet
     volumes:
       - /data/configs/ergo-explorer-mainnet/app.config.js:/usr/src/app/build/client/app.config.js:ro
     networks:
