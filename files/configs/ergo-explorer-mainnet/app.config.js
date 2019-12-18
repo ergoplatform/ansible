@@ -1,6 +1,6 @@
 var __APP_CONFIG__ = {
   apiUrl: 'https://api.ergoplatform.com',
-  alternativeLogo: true, // true by default
+  alternativeLogo: false, // true by default
   environments: [
      {
        name: 'Mainnet',

@@ -1,6 +1,6 @@
 var __APP_CONFIG__ = {
   apiUrl: 'https://api-testnet.ergoplatform.com',
-  alternativeLogo: false, // true by default
+  alternativeLogo: true, // true by default
   environments: [
      {
        name: 'Testnet',
