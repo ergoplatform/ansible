@@ -8,7 +8,7 @@ This manual address deploy and troubleshooting workflow for Explorer.
 
 Explorer consists of two separate projects: [Backend](https://github.com/ergoplatform/explorer-back) and [Frontend](https://github.com/ergoplatform/ergo-explorer). Backend need a PostgreSQL database to store and index blockchain data. Frontend can run on it's own, without any dependencies.
 
-Testnet and Mainnet Explorer stacks executes on dedicated servers. See [inventory](../inventory/host) for `explorer` host (Testnet) and `explorer-mainnet` host (Mainnet).
+Testnet and Mainnet Explorer stacks executes on dedicated servers. See [inventory/hosts](https://github.com/ergoplatform/ansible/blob/04446f782455cc645b992fd954be5285bbda2286/inventory/hosts#L6) for `explorer` host (Testnet) and `explorer-mainnet` host (Mainnet).
 
 
 ## Deploy
@@ -41,8 +41,8 @@ In case of any problems with explorers, you can try following:
 
 1. ssh on `explorer` or `explorer-mainnet` with your credentials (reference with [hosts inventory](../inventory/hosts) for hosts IP, [explorers hosts users](../inventory/group_vars/explorers/users) for credentials)
 
-2. Execute `sudo docker container ps -a` to see which containers is executed now and which are exited. You can visually figure out container of your interest and find its `<CONTAINER_ID>`
+2. Execute `sudo docker container ps -a` to see which containers are running now and which are exited. You can visually figure out the container of your interest and find its `<CONTAINER_ID>`.
 
-3. Execute `sudo docker container logs -f --tail 100 <CONTAINER_ID>` to see container's logs. Choose `CONTAINER_ID` from previous step
+3. Execute `sudo docker container logs -f --tail 100 <CONTAINER_ID>` to see container's logs. Choose `CONTAINER_ID` from previous step.
 
-4, Execute `sudo docker container stop <CONTAINER_ID>` to stop stucked container. Docker Swarm automatically start another container to fits stack definition needs. Container you stopped remains and you can explore its logs later
+4, Execute `sudo docker container stop <CONTAINER_ID>` to stop stucked container. Docker Swarm automatically start another container to fits stack definition needs. Container you stopped remains, and you can explore its logs later.
