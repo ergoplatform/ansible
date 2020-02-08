@@ -23,9 +23,9 @@ services:
       DB_URL: jdbc:postgresql://explorer-mainnet_postgres:5432/explorer
       DB_USER: ergo
       DB_PASS_FILE: /run/secrets/ergo-at-postgres-mainnet
-#      KNOWN_PEERS: '[“http://139.59.29.87:9053”, “http://159.65.11.55:9053", "http://165.227.26.175:9053"]'
+#      KNOWN_PEERS: '[“http://88.198.13.202:9053”, “http://159.65.11.55:9053", "http://165.227.26.175:9053"]'
       # bangalore
-      PEER_1: http://139.59.29.87:9053
+      PEER_1: http://88.198.13.202:9053
       # singapore
       PEER_2: http://159.65.11.55:9053
       # sf
