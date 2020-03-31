@@ -1,5 +1,5 @@
 var __APP_CONFIG__ = {
-  apiUrl: 'https://api.ergoplatform.com',
+  apiUrl: 'https://new-explorer.ergoplatform.com',
   alternativeLogo: false, // true by default
   environments: [
      {
