@@ -1,9 +1,6 @@
 [docker-swarm]
 swarm01 ansible_host=188.166.109.25
-explorer-mainnet ansible_host=167.71.14.34
 
-[explorers]
-explorer-mainnet
 
 [mainnet]
 bangalore ansible_host=139.59.29.87
@@ -14,7 +11,6 @@ toronto ansible_host=159.89.116.15
 
 [nginx]
 swarm01
-explorer-mainnet
 
 [docker]
 it-tests ansible_host=159.65.117.238
@@ -24,7 +20,6 @@ docker-swarm
 
 [servers]
 it-tests
-test-explorer
 
 [jenkins-builders]
 it-tests

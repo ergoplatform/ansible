@@ -1,8 +1,0 @@
----
-
-configurator:
-
-  directories:
-
-    # PostgreSQL data directory
-    /data/postgres:
